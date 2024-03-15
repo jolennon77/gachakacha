@@ -26,7 +26,7 @@
             <ul>
             
             <li class="menu-item">
-                    <a href="main.do"><i class="fa-solid fa-house"></i>&nbsp;&nbsp; 
+                    <a href="mainP.admin"><i class="fa-solid fa-house"></i>&nbsp;&nbsp; 
                     쇼핑몰메인</a>
                 </li>
                 

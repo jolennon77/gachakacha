@@ -65,8 +65,8 @@ public class AdminPageController extends HttpServlet {
 
 		} else if (PATH.equals("/pInsertPage.admin")) {
 			System.out.println("재고등록 페이지로로 이동");
-
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/viewAdmin/productInsert.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/viewAdmin/main.jsp");
+//			RequestDispatcher dispatcher = request.getRequestDispatcher("/viewAdmin/productInsert.jsp");
 			dispatcher.forward(request, response);
 
 			// ---------------------------------
@@ -75,8 +75,14 @@ public class AdminPageController extends HttpServlet {
 			System.out.println("재고등록 페이지로로 이동");
 
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/viewAdmin/boardReview.jsp");
+			
 			dispatcher.forward(request, response);
 
+			// ---------------------------------
+		} else if (PATH.equals("/mainP.admin")) {
+			System.out.println("dd");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/viewAdmin/main.jsp");
+			dispatcher.forward(request, response);
 			// ---------------------------------
 
 		} else if (PATH.equals("/pInsert.admin")) {
@@ -268,18 +274,16 @@ public class AdminPageController extends HttpServlet {
 		} else if (PATH.equals("/userDelete.admin")) {
 			System.out.println("유저 삭제");
 
-		       // 삭제할 회원의 ID 가져오기
-		       int userId = Integer.parseInt(request.getParameter("uId"));
+			// 삭제할 회원의 ID 가져오기
+			int userId = Integer.parseInt(request.getParameter("uId"));
 
-		       // UserDAO를 사용하여 해당 회원을 삭제합니다.
-		       uDao.delete(userId); // 해당 memberId에 해당하는 회원을 삭제하는 메소드를 가정합니다.
+			// UserDAO를 사용하여 해당 회원을 삭제합니다.
+			uDao.delete(userId); // 해당 memberId에 해당하는 회원을 삭제하는 메소드를 가정합니다.
 
-		       // 삭제 후, 관련된 페이지로 리다이렉트합니다.
-		       RequestDispatcher dispatcher = request.getRequestDispatcher("memeberList.admin");
+			// 삭제 후, 관련된 페이지로 리다이렉트합니다.
+			RequestDispatcher dispatcher = request.getRequestDispatcher("memeberList.admin");
 			dispatcher.forward(request, response);
 
-			
-			
 		} else if (PATH.equals("/getUDetail.admin")) {
 			System.out.println("회원 정보 상세보기 페이지");
 			// 버튼 누르면 상세 조회되게
@@ -293,7 +297,7 @@ public class AdminPageController extends HttpServlet {
 			// 상세 페이지로 포워딩합니다.
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/viewAdmin/userDetail.jsp");
 			dispatcher.forward(request, response);
-			
+
 		} else if (PATH.equals("/updateUser.admin")) {
 			System.out.println("회원 정보 업데이트");
 			// 버튼 누르면 상세 조회되게
@@ -303,25 +307,23 @@ public class AdminPageController extends HttpServlet {
 
 			// userDTO 객체로 매핑 후
 			// request.getParameter()로 입력값 가져오기
-			user.setEmail(request.getParameter("u_Email")); 
-			user.setName(request.getParameter("u_Name")); 
-			user.setPassword(request.getParameter("u_Pwd")); 
-			user.setPhone(request.getParameter("u_Phone")); 	
-			user.setGender(request.getParameter("u_Gender")); 
-			user.setBirth(request.getParameter("u_Birth")); 
-			user.setZonecode(request.getParameter("u_Zonecode")); 
-			user.setAddress(request.getParameter("u_Address")); 
-			
-			
+			user.setEmail(request.getParameter("u_Email"));
+			user.setName(request.getParameter("u_Name"));
+			user.setPassword(request.getParameter("u_Pwd"));
+			user.setPhone(request.getParameter("u_Phone"));
+			user.setGender(request.getParameter("u_Gender"));
+			user.setBirth(request.getParameter("u_Birth"));
+			user.setZonecode(request.getParameter("u_Zonecode"));
+			user.setAddress(request.getParameter("u_Address"));
+
 //			String dateString = request.getParameter("u_signupDate");
 //			java.sql.Date signupDate = java.sql.Date.valueOf(dateString);
 //			user.setsingupDate(signupDate);
 //			
-			
-			user.setAut(request.getParameter("u_Aut")); 
+
+			user.setAut(request.getParameter("u_Aut"));
 			user.setId(uId);
-			
-			
+
 			// ProductDAO를 생성하고 updateProductById 메서드 호출
 			uDao = new UserDAO();
 			uDao.updateUserById(user);
@@ -329,7 +331,7 @@ public class AdminPageController extends HttpServlet {
 			// 상세 페이지로 포워딩
 			RequestDispatcher dispatcher = request.getRequestDispatcher("getUDetail.admin?uId=" + uId);
 			dispatcher.forward(request, response);
-			
+
 		}
 	}
 }
