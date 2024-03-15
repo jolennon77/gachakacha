@@ -1,9 +1,4 @@
 
-		<!-- <li><a href="/toyProject4/Index?action=index">메인으로 </a></li>
-		<li><a href="/toyProject4/Index?action=productList">제품 목록 보기</a></li>
-		<li><a href="/toyProject4/Index?action=productForm">제품 등록하기</a></li> -->
-
-		
 		
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
