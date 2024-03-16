@@ -16,7 +16,10 @@ import javax.servlet.http.HttpFilter;
 @WebFilter("/*")
 public class CharaterEncodingFilter extends HttpFilter implements Filter {
        
-    public CharaterEncodingFilter() {
+    private static final long serialVersionUID = 1L;
+
+
+	public CharaterEncodingFilter() {
         super();
     }
 

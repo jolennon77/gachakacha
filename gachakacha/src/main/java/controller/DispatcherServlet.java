@@ -68,13 +68,13 @@ public class DispatcherServlet extends HttpServlet {
 			
 			
 //-----------------------------------------어드민 영역--------------------------------------
-			//어드민 페이지로 이동
-		} else if (PATH.equals("/adminPage.do")) {
-			System.out.println("어드민페이지 이동");
-			// 어드민페이지 이동을 처리하는 서블릿으로 포워딩
-			RequestDispatcher dispatcher = request.getRequestDispatcher("adminPage.admin");
-			dispatcher.forward(request, response);
-			
+//			//어드민 페이지로 이동
+//		} else if (PATH.equals("/adminPage.do")) {
+//			System.out.println("어드민페이지 이동");
+//			// 어드민페이지 이동을 처리하는 서블릿으로 포워딩
+//			RequestDispatcher dispatcher = request.getRequestDispatcher("/adminPage.admin");
+//			dispatcher.forward(request, response);
+//			
 		}
 	}
 }

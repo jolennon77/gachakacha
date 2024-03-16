@@ -260,8 +260,9 @@
 
 					<!-- gender input -->
 					<div class="radio__block">
-						<label>성별</label> <input type="radio" name="gender" value="M">
-						남 <input type="radio" name="gender" value="F"> 여
+						<label>성별</label>
+						<input type="radio" name="gender" value="M"> 남
+						<input type="radio" name="gender" value="F"> 여 
 					</div>
 					<!-- birthday input -->
 					<div class="select__block">

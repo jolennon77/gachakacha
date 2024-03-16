@@ -65,7 +65,6 @@ public class SignupController extends HttpServlet {
 		user.setBirth(birth);
 		user.setZonecode(zonecode);
 		user.setAddress(address);
-
 		uDao.insert(user);
 		
 		 response.sendRedirect("index.jsp");
