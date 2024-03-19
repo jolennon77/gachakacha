@@ -13,7 +13,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Tables</title>
+    <title>유저 리스트</title>
 
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -78,7 +78,7 @@
 											<col width="12%">
 											<col width="12%">
 											<col width="8%">
-											<col width="10%">
+											<col width="8%">
 										</colgroup>
 										<thead>
 											<tr>
@@ -95,7 +95,7 @@
 										<tbody>
 											<c:forEach items="${userAll}" var="u">
 												<tr>
-													<td>${u.getEmail()}</td>
+													<td><a href="userDetail.admin?uId=${u.getId()}">${u.getEmail()}</a></td>
                                                     <td><a href="userDetail.admin?uId=${u.getId()}">${u.getName()}</a></td>
                                                     <td>${u.getPhone()}</td>
                                                     <td>
@@ -109,7 +109,7 @@
                                                     <td>${u.getBirth()}</td>
 													<td>${u.getsingupDate()}</td>
 													<td>${u.getAut()}</td>
-													<td>작성글보기</td>
+													<td><button class="btn submitbtn" id="minibtn" type="button" onclick="window.location.href='#';">작성글</button></td>
 												</tr>
 											</c:forEach>
 										</tbody>

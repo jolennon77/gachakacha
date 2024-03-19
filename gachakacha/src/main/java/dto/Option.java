@@ -1,12 +1,12 @@
 package dto;
 
 public class Option {
-	int option_ID;
-	int product_ID;
-	String option_Name;
-	String option_Grade;
-	int option_Qty;
-	String option_Img;
+	private int option_ID;
+	private int product_ID;
+	private String option_Name;
+	private String option_Grade;
+	private int option_Qty;
+	private String option_Img;
 
 	public int getOption_ID() {
 		return option_ID;

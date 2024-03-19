@@ -15,9 +15,13 @@ import javax.servlet.http.HttpSession;
 
 import dao.OptionDAO;
 import dao.ProductDAO;
+import dao.SaleDAO;
+import dao.SaleViewDAO;
 import dao.UserDAO;
 import dto.Option;
 import dto.Product;
+import dto.Sale;
+import dto.SaleView;
 import dto.User;
 
 /**
@@ -29,12 +33,14 @@ public class AdminController extends HttpServlet {
 	ProductDAO pDao;
 	OptionDAO oDao;
 	UserDAO uDao;
+	SaleDAO sDao;
 
 	public AdminController() {
 		super();
 		pDao = new ProductDAO();
 		oDao = new OptionDAO();
 		uDao = new UserDAO();
+		sDao = new SaleDAO();
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
@@ -333,6 +339,81 @@ public class AdminController extends HttpServlet {
 			// 삭제 후, 관련된 페이지로 리다이렉트합니다.
 			response.sendRedirect("productDetail.admin?pId=" + pId);
 
+		} else if (PATH.equals("/saleInsertForm.admin")) {
+			System.out.println("제품 등록 페이지");
+			// 버튼 누르면 상세 조회되게
+			int pId = Integer.parseInt(request.getParameter("pId"));
+
+			Product product = pDao.getProductById(pId); // 이 메서드는 해당 pId에 해당하는 제품 정보를 데이터베이스에서 가져오는 것을 가정합니다.
+//			List<Option> optionList = oDao.getProductOptionsById(pId);
+
+			// 가져온 제품 정보를 request 객체에 저장합니다.
+			request.setAttribute("product", product);
+//			request.setAttribute("optionList", optionList);
+
+			// 상세 페이지로 포워딩합니다.
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/viewAdmin/saleInsert.jsp");
+			dispatcher.forward(request, response);
+			// ---------------------------------
+
+		} else if (PATH.equals("/saleInsert.admin")) {
+
+			Sale sale = new Sale();
+
+			int pId = Integer.parseInt(request.getParameter("pId"));
+			sale.setProduct_ID(pId);
+
+			int Ragular_Price = Integer.parseInt(request.getParameter("s_RegPrice"));
+			sale.setRegular_Price(Ragular_Price);
+
+			int Sale_Price = Integer.parseInt(request.getParameter("s_Price"));
+			sale.setSale_Price(Sale_Price);
+
+			double Discount_Rate = Double.parseDouble(request.getParameter("s_DiscontRate")) / 100.0;
+			sale.setDiscount_Rate(Discount_Rate);
+
+			sale.setSale_Description(request.getParameter("s_Description"));
+
+			sDao.saleInsert(sale);
+
+			response.sendRedirect("adminPage.admin");
+
+			// ---------------------------------
+
+		} else if (PATH.equals("/saleList.admin")) {
+			System.out.println("판매리스트 목록 페이지");
+
+			SaleViewDAO saleViewDAO = new SaleViewDAO();
+
+			// 모든 제품 목록을 가져옴
+			List<SaleView> saleList = saleViewDAO.getAll();
+
+			// 가져온 제품 목록을 productList.jsp로 전달
+			request.setAttribute("saleList", saleList);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/viewAdmin/saleList.jsp");
+			dispatcher.forward(request, response);
+
+		} else if (PATH.equals("/saleDetail.admin")) {
+			System.out.println("상품 정보 상세보기 페이지");
+			// 버튼 누르면 상세 조회되게
+			int pId = Integer.parseInt(request.getParameter("pId"));
+			int sId = Integer.parseInt(request.getParameter("sId"));
+
+//			Product product = pDao.getProductById(pId); // 이 메서드는 해당 pId에 해당하는 제품 정보를 데이터베이스에서 가져오는 것을 가정합니다.
+			Sale sale = sDao.getProductById(sId);
+			Product product = pDao.getProductById(pId);
+			
+			// 가져온 제품 정보를 request 객체에 저장합니다.
+			request.setAttribute("product", product);
+			request.setAttribute("sale", sale);
+			
+
+			// 상세 페이지로 포워딩합니다.
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/viewAdmin/saleDetail.jsp");
+			dispatcher.forward(request, response);
+
+			// ---------------------------------
 		}
+
 	}
 }

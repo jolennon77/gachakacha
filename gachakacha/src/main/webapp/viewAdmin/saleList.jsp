@@ -12,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>상품 목록</title>
+    <title>판매 목록</title>
 
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -26,6 +26,7 @@
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+
 </head>
 
 <body id="page-top">
@@ -35,7 +36,6 @@
 
 		<!-- Sidebar -->
 		<%@ include file="./layout/sidebar.jsp"%>
-
 		<!-- End of Sidebar -->
 
 		<!-- Content Wrapper -->
@@ -54,7 +54,7 @@
 					<!-- Page Heading -->
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">상품 목록</h1>
+						<h1 class="h3 mb-0 text-gray-800">판매 목록</h1>
 						<a href="#"
 							class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
 							class="fas fa-download fa-sm text-white-50"></i>&nbsp;데이터베이스 내려받기</a>
@@ -70,51 +70,32 @@
 									<table class="table table-bordered" id="dataTable" width="100%"
 										cellspacing="0">
 										<colgroup>
-											<col width="9%">
-											<col width="8%">
-											<col width="7%">
 											<col width="10%">
 											<col>
-											<col>
-											<col width="8%">
-											<col width="8%">
-											<col width="8%">
+											<col width="10%">
+											<col width="10%">
+											<col width="10%">
+											<col width="10%">
 										</colgroup>
 										<thead>
 											<tr>
-												<th>제품ID</th>
-												<th>이미지</th>
-												<th>종류</th>
-												<th>카테고리</th>
-												<th>제품명</th>
-												<th>제품설명</th>
-												<th>입고가</th>
-												<th>판매</th>
-												<th>리뷰</th>
+												<th>판매ID</th>
+												<th>제품이름</th>
+												<th>정가</th>
+												<th>판매가</th>
+												<th>할인율</th>
+												<th>수량</th>
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach items="${productList}" var="p">
+											<c:forEach items="${saleList}" var="s">
 												<tr>
-													<td>${p.getProduct_Id()}</td>
-													<td style="padding: 0;">
-														<div class="thumnail">
-															<img src="${p.getProduct_Img()}">
-														</div>
-													</td>
-													<td><c:choose>
-												<c:when test="${p.getProduct_Type() eq 'G'}">가챠</c:when>
-												<c:when test="${p.getProduct_Type() eq 'K'}">쿠지</c:when>
-												<c:otherwise></c:otherwise>
-												<%-- 아무것도 표시하지 않음 --%>
-											</c:choose></td>
-													
-													<td>${p.getProduct_Cat()}</td>
-													<td><a href="productDetail.admin?pId=${p.getProduct_Id()}">${p.getProduct_Name()}</a></td>
-													<td>${p.getProduct_Con()}</td>
-													<td>${p.getProduct_Price()}</td>
-													<td><button class="btn submitbtn" id="minibtn" type="button" onclick="window.location.href='saleInsertForm.admin?pId=${p.getProduct_Id()}';">판매등록</button></td>
-													<td><button class="btn submitbtn" id="minibtn" type="button" onclick="window.location.href='saleInsertForm.admin?pId=${p.getProduct_Id()}';">리뷰목록</button></td>
+													<td>${s.getSaleId()}</td>
+													<td><a href="saleDetail.admin?sId=${s.getSaleId()}&pId=${s.getProductId()}">${s.getProductName()}</a></td>
+													<td>${s.getRegularPrice()}</td>
+													<td>${s.getSalePrice()}</td>
+													<td>${s.getDiscountRate()}</td>
+													<td>${s.getTotalQty()}</td>
 												</tr>
 											</c:forEach>
 										</tbody>

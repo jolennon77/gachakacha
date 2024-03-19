@@ -26,7 +26,7 @@
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-
+	<script src="js/addOption.js"></script>
 </head>
 
 <body id="page-top">
@@ -67,7 +67,7 @@
 							<div class="card-body">
 								<div class="table-responsive">
 								<!-- start of 부모 제품 등록 폼 -->
-									<script src="js/addOption.js"></script>
+									
 									<form action="productInsert.admin" method="post">
 										<div class="mainProduct input__block">
 											<table class="table table-bordered mainProductTable table-input" id="dataTable" width="100%" cellspacing="0">

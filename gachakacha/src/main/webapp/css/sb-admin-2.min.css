@@ -10,6 +10,7 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
 :root {
+	--brown:#5f482f
     --blue: #4e73df;
     --indigo: #6610f2;
     --purple: #6f42c1;
@@ -1789,7 +1790,7 @@ pre code {
 .table td,
 .table th {
     padding: .75rem;
-    vertical-align: top;
+    vertical-align: middle;
     border-top: 1px solid #e3e6f0
 }
 
@@ -3321,7 +3322,7 @@ fieldset:disabled a.btn {
 
 .btn-link {
     font-weight: 400;
-    color: #4e73df;
+    color: #5f482f;
     text-decoration: none
 }
 
@@ -11142,9 +11143,12 @@ a:focus {
 }
 
 .bg-gradient-primary {
-    background-color: #5f482f;
-    background-image: linear-gradient(360deg, #2a1f17 10%, #6b5b4e 100%);
-    background-size: cover
+   /*  background-color: #433321;
+    background-image: linear-gradient(180deg, #483826 10%, #3a2a1f 100%);
+    background-size: cover */
+    background-color: #756455;
+    background-image: linear-gradient(180deg, #756455 10%, #6b5b4e 100%);
+    background-size: cover;
 }
 
 .bg-gradient-secondary {
@@ -12979,7 +12983,8 @@ body.sidebar-toggled footer.sticky-footer {
 
 /* 추가 수정 */
 #submenu {
-background-color: #5f482f00;
+background-color: #6b5b4e;
+background-image: linear-gradient(180deg, #736356 10%, #5a4c42 100%);
 }
 
 .thumnail {
@@ -12999,6 +13004,7 @@ background-color: #5f482f00;
 	height: 100%;
 	position: absolute;
 }
+
 
 .table.table-input td,
 .table.table-input th{
@@ -13044,7 +13050,8 @@ border: 1px solid #e3e6f0;
 }
 
 
-form .input__block input {
+form .input__block input,
+.input__block input {
 	display: block;
 	/* width: 100%; */
 	border-radius: 4px;
@@ -13078,9 +13085,58 @@ width: 100%;
     color: rgba(15, 19, 42, 0.6);
     height: 25px;
 }
-
 .submitbtn{
 	background-color: #47b824;
 	margin-left: 0.3rem;
 	color: white;
+}
+
+.btn_wrap{
+display: flex;
+}
+#minibtnOp,
+#minibtn{
+	background-color: #47b824;
+	margin-left: 0.15rem;
+	margin-right: 0.15rem;
+	color: white;
+	 display: inline-block; /* 인라인 요소로 표시 */
+    white-space: nowrap; /* 텍스트 줄바꿈 금지 */
+	border-radius: 4px;
+	border: none;
+	background-color: #47b824;
+	padding: 0 5px ;
+}
+
+#minibtnOp{
+	margin-left: 1.5rem;
+	margin-top: 0.5rem;
+	margin-bottom: 1.2rem;
+}
+
+.optionPopUp,
+.optionUpdateDelete{
+	display: flex;
+	justify-content: flex-start;
+}
+.optionPopUp h1{
+	
+	padding-top:1.5rem;
+	padding-left:1.5rem;
+	/* padding-bottom:1.5rem; */
+}
+.optionAddBtn{
+	padding-top:3rem;
+	padding-right:1.5rem;
+	padding-bottom:0.5rem;
+} 
+
+.s_Cont textarea{
+	resize: none;
+	padding: 0;
+    border-radius: 4px;
+    border: none;
+    /* font-family: "Montserrat", sans-serif; */
+    background: rgba(15, 19, 42, 0.1);
+    color: rgba(15, 19, 42, 0.6);
 }

@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <div style="margin: 2rem 0;">
@@ -40,8 +41,8 @@
                         <h6 class="collapse-header">상 품 관 리 </h6>
                         <a class="collapse-item" href="productInsertForm.admin">상 품 등 록</a>
                         <a class="collapse-item" href="productList.admin">상 품 조 회</a>
-                        <a class="collapse-item" href="#">판 매 등 록</a>
-                        <a class="collapse-item" href="#">판 매 조 회</a>
+                        <!-- <a class="collapse-item" href="#">판 매 등 록</a> -->
+                        <a class="collapse-item" href="saleList.admin">판 매 조 회</a>
                     </div>
                 </div>
             </li>
@@ -106,3 +107,4 @@
            
 
         </ul>
+        
