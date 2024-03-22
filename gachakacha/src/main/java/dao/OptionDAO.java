@@ -19,12 +19,13 @@ public class OptionDAO {
 	Connection con = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
+	
 	private String OPTION_INSERT = "INSERT INTO ProductOption (Product_ID, Option_Name, Option_Grade, Option_Img, Option_Qty)  values(?, ?, ?, ?, ?)";
 	private String OPTION_LIST = "SELECT * FROM ProductOption WHERE Product_ID = ?";
 	private String OPTION_DELETE = "DELETE FROM ProductOption WHERE Option_ID = ?";
 	private String OPTION_UPDATE = "UPDATE ProductOption SET Option_Name = ?, Option_Grade = ?, Option_Img = ?, Option_Qty = ? WHERE Option_ID = ?";
 
-	private String OPTION_ADD = "DELETE FROM ProductOption WHERE Option_ID = ?";
+	//private String OPTION_ADD = "DELETE FROM ProductOption WHERE Option_ID = ?";
 	
 //  getAll() 메서드 추가
 	public List<Option> getProductOptionsById(int productId) {

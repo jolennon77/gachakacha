@@ -1,5 +1,6 @@
 package controller;
 
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -16,9 +17,12 @@ import javax.servlet.http.HttpSession;
 import com.mysql.cj.exceptions.RSAException;
 
 import dao.OptionDAO;
+import dao.Order1DAO;
 import dao.ProductDAO;
 import dao.UserDAO;
 import dto.Option;
+import dto.Orders;
+import dto.OrdersDetail;
 import dto.Product;
 import dto.User;
 
@@ -31,12 +35,14 @@ public class AdminPageController extends HttpServlet {
 	ProductDAO pDao;
 	OptionDAO oDao;
 	UserDAO uDao;
+	Order1DAO odDao;
 
 	public AdminPageController() {
 		super();
 		pDao = new ProductDAO();
 		oDao = new OptionDAO();
 		uDao = new UserDAO();
+		odDao = new Order1DAO();
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
@@ -330,6 +336,68 @@ public class AdminPageController extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("getUDetail.admin?uId=" + uId);
 			dispatcher.forward(request, response);
 			
+		}else if(PATH.equals("/orderPage.admin")){
+			System.out.println("주문 관리 페이지");
+			
+			request.setAttribute("orderAll", odDao.getAll());
+			
+			RequestDispatcher dispatchere = request.getRequestDispatcher("/view/orderList.jsp");
+			dispatchere.forward(request, response);
+			
+		}else if(PATH.equals("/orderDelete.admin")) {
+			System.out.println("주문 삭제");
+			
+			// 삭제할 주문의 ID 가져오기
+		    int Order_Id = Integer.parseInt(request.getParameter("odId"));
+
+		    // order1DAO를 사용하여 해당 주문을 삭제합니다.
+		    odDao.delete(Order_Id); // 해당 Order_Id에 해당하는 주문을 삭제하는 메소드를 가정합니다.
+
+		}else if (PATH.equals("/updateOrder.admin")) {
+			System.out.println("주문 정보 업데이트");
+			// 버튼 누르면 상세 조회되게
+			int odId = Integer.parseInt(request.getParameter("odId"));
+
+			// Order1DTO 객체로 매핑 후
+			// request.getParameter()로 입력값 가져오기
+			OrdersDetail orderD = new OrdersDetail(odId, odId, odId, odId, odId);
+			
+			int odid = Integer.parseInt(request.getParameter("odid"));
+			orderD.setOdersDetail_ID(odid);
+			int oid = Integer.parseInt(request.getParameter("oid"));
+			orderD.setOrders_ID(oid);
+			int pid = Integer.parseInt(request.getParameter("pid"));
+			orderD.setProduct_ID(pid);
+			int opid = Integer.parseInt(request.getParameter("opid"));
+			orderD.setOption_ID(opid);
+			int qty = Integer.parseInt(request.getParameter("qty"));
+			orderD.setOrder_Qty(qty);
+			
+			// 가져온 주문 정보를 request 객체에 저장
+			request.setAttribute("order", odId);
+			
+			//order1DAO를 생성하고 updateOrderById 메서드 호출
+			odDao.getOrderDetailById(odId);
+			response.sendRedirect("updateOrder.admin?odId=" + odId);
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/orderDetail.jsp");
+		    dispatcher.forward(request, response);
+		    
+		} else if (PATH.equals("/getODetail.admin")) {
+		    System.out.println("주문 정보 상세보기 페이지");
+		    // 버튼 누르면 상세 조회되게
+		    int odId = Integer.parseInt(request.getParameter("odId"));
+
+		    // Order1DAO를 생성하고 getOrderDetailById 메서드 호출
+		    Order1DAO orderDao = new Order1DAO();
+		    OrdersDetail orderDetail = orderDao.getOrderDetailById(odId);
+
+		    // 가져온 주문 상세 정보를 request 객체에 저장합니다.
+		    request.setAttribute("orderDetail", orderDetail);
+
+		    // 상세 페이지로 포워딩합니다.
+		    RequestDispatcher dispatcher = request.getRequestDispatcher("/viewAdmin/orderDetail.jsp");
+		    dispatcher.forward(request, response);
 		}
 	}
 }

@@ -61,8 +61,7 @@
 												name="u_Name" id="u_Name" 
 												value="${user.getName()}"></td>
 										</tr>
-										<!-- <tr>
-										</tr> -->
+									
 										<tr>
 											<th>비 밀 번 호</th>
 											<!-- 대표 제품명 입력 필드 -->
@@ -127,7 +126,7 @@
 								<div>
 								<input class="btn" type="submit" value="수정"> 
 									<span class="del_Button">
-										<a href="updateUser.admin?uId=${user.getId()}">삭제</a></span> 
+										<a href="updateUser.admin?uId=${user.getId()}">삭제</a></span >
 								</div>
 							</div>
 						</form>

@@ -55,13 +55,13 @@
                 <i class="fa-solid fa-cart-shopping"></i>&nbsp;&nbsp;
                     주문/출고관리
                     <ul class="sub-menu">
-                        <li><a>주문관리</a></li>
-                        <li><a>출고관리</a></li>
+                        <li><a href="orderPage.admin">주문관리</a></li>
+                        <li><a href="">출고관리</a></li>
                     </ul>
                 </li>
                 <!-- 나머지 메뉴들 추가 -->
                 <li class="menu-item parent"style="padding-left:3px;">
-                <i class="fa-solid fa-pen-to-square"></i></i>&nbsp;&nbsp;
+                <i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;
                     게시판관리
                     <ul class="sub-menu">
                         <li><a>공지사항</a></li>
