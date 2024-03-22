@@ -58,7 +58,7 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded" id="submenu">
                         <h6 class="collapse-header">주 문 관 리</h6>
-                        <a class="collapse-item" href="#">주 문 조 회</a>
+                        <a class="collapse-item" href="orderPage.admin">주 문 조 회</a>
                         <a class="collapse-item" href="#">출 고 조 회</a>
                     </div>
                 </div>

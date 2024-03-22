@@ -10,6 +10,33 @@ body {
 	margin: 120px auto;
 }
 
+.logindiv {
+	background-color: #f8f2ed;
+	border-radius: 30px;
+	padding: 20px 0;
+}
+
+.loginimg {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
+
+.loginimg>div {
+	text-align: center;
+	width: 40%;
+}
+
+.loginimg img {
+	width: 100%;
+}
+
+#errorMessage {
+	display: none;
+	text-align: center;
+	color: red;
+}
+
 h1 {
 	color: #e91e63;
 	font-size: 48px;
@@ -119,15 +146,16 @@ form .input__block input {
 	border-radius: 8px;
 	border: none;
 	background: rgba(15, 19, 42, 0.1);
-	color: rgba(15, 19, 42, 0.5); padding : 0 0 0 15px;
+	color: rgba(15, 19, 42, 0.5);
+	padding: 0 0 0 15px;
 	font-size: 14px;
 	font-family: "Montserrat", sans-serif;
 	display: flex; /* 요소를 수평으로 배치합니다. */
 	align-items: center;
 	padding: 0 0 0 15px; /* 요소를 수직으로 중앙 정렬합니다. */
 }
-/* .zonezodebtn, */
-.select__block {
+
+.address__block, .select__block {
 	display: block;
 	width: 90%;
 	max-width: 680px;
@@ -144,42 +172,49 @@ form .input__block input {
 	align-items: center; /* 요소를 수직으로 중앙 정렬합니다. */
 }
 
-.select__block select{
-padding: 0 3px;
-border-radius: 4px;
-border :none;
-font-family: "Montserrat", sans-serif;
-color: rgba(15, 19, 42, 0.5);
-height:25px;
-
-
+form .address__block input {
+	display: block;
+	width: 90%;
+	max-width: 680px;
+	height: 50px;
+	margin: 0 auto;
+	border-radius: 8px;
+	border: none;
+	background: rgba(15, 19, 42, 0);
+	color: rgba(15, 19, 42, 0.6);
+	/* padding: 0 0 0 15px; */
+	font-size: 14px;
+	font-family: "Montserrat", sans-serif;
 }
 
-#phone_2,
-#phone_3,
-#zonecode,
-#address{
-padding: 0 3px;
-border-radius: 4px;
-border :none;
-font-family: "Montserrat", sans-serif;
-color: rgba(15, 19, 42, 0.5);
-width: 10%;
-height:25px;
-text-align: center;
+.select__block select {
+	padding: 0 3px;
+	border-radius: 4px;
+	border: none;
+	font-family: "Montserrat", sans-serif;
+	color: rgba(15, 19, 42, 0.5);
+	height: 25px;
 }
-#zonecode,
-#address{
-	/* width: 25%; */
+
+#phone_2, #phone_3 {
+	padding: 0 3px;
+	border-radius: 4px;
+	border: none;
+	font-family: "Montserrat", sans-serif;
+	color: rgba(15, 19, 42, 0.5);
+	width: 10%;
+	height: 25px;
+	text-align: center;
+}
+/* #zonecode, */
+/* #address{
+	width: 100%;
 	background-color: rgba(15, 19, 42, 0);
 	text-align:left;
 }
 #address{
 	width: 35%;
-}
-
-
-
+} */
 form .input__block input:focus, form .input__block input:active {
 	outline: none;
 	border: none;
@@ -326,15 +361,13 @@ footer p a .fa-behance {
 	color: #1769ff;
 }
 
-
-
 #zonezodebtn {
 	width: 80px;
 	font-size: 12px;
 	font-weight: 600;
 	color: #fff;
 	cursor: pointer;
-	margin-left: 0px;
+	margin-right: 2rem;
 	height: 33px;
 	text-align: center;
 	border: none;
@@ -344,7 +377,7 @@ footer p a .fa-behance {
 	-o-transition: all .4s ease-in-out;
 	-webkit-transition: all .4s ease-in-out;
 	transition: all .4s ease-in-out;
-/* 	background-image: linear-gradient(to right, #ed6ea0, #ec8c69, #f7186a, #FBB03B); */
+	/* 	background-image: linear-gradient(to right, #ed6ea0, #ec8c69, #f7186a, #FBB03B); */
 	background-image: linear-gradient(to right, #f7186a, #f7186a, #f7186a, #FBB03B);
 }
 
@@ -354,4 +387,25 @@ footer p a .fa-behance {
 	-o-transition: all .4s ease-in-out;
 	-webkit-transition: all .4s ease-in-out;
 	transition: all .4s ease-in-out;
+}
+
+.error-message {
+	color: red;
+	font-size: 12px;
+	display: block; /* 입력창 아래에 한 줄씩 표시되도록 함 */
+	width: 90%;
+	margin: 0 auto;
+}
+/* 비활성화된 버튼의 배경색 */
+.signin__btn.disabled {
+	background: #ccc; /* 비활성화된 상태일 때의 배경색 */
+	box-shadow: 0 15px 30px rgba(0, 0, 0, 0.36);
+	transition: 0.2s linear;
+}
+
+/* 활성화된 버튼의 배경색 */
+.signin__btn:not(.disabled) {
+	background: #e91e63; /* 활성화된 상태일 때의 배경색 */
+	box-shadow: 0 15px 30px rgba(233, 30, 99, 0.36);
+	transition: 0.2s linear;
 }

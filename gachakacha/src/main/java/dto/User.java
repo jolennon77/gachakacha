@@ -10,7 +10,6 @@ public class User {
     private String phone;
     private String gender;
     private String birth;
-    private String zonecode;
     private String address;
     private String aut;
     private Date singupDate;
@@ -58,12 +57,6 @@ public class User {
 	}
 	public void setBirth(String birth) {
 		this.birth = birth;
-	}
-	public String getZonecode() {
-		return zonecode;
-	}
-	public void setZonecode(String zonecode) {
-		this.zonecode = zonecode;
 	}
 	public String getAddress() {
 		return address;

@@ -2,7 +2,6 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -14,14 +13,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.OptionDAO;
+import dao.OrderDAO;
 import dao.ProductDAO;
 import dao.SaleDAO;
-import dao.SaleViewDAO;
 import dao.UserDAO;
 import dto.Option;
+import dto.Orders;
 import dto.Product;
 import dto.Sale;
-import dto.SaleView;
 import dto.User;
 
 /**
@@ -34,6 +33,7 @@ public class AdminController extends HttpServlet {
 	OptionDAO oDao;
 	UserDAO uDao;
 	SaleDAO sDao;
+	OrderDAO orderDAO;
 
 	public AdminController() {
 		super();
@@ -41,6 +41,7 @@ public class AdminController extends HttpServlet {
 		oDao = new OptionDAO();
 		uDao = new UserDAO();
 		sDao = new SaleDAO();
+		orderDAO = new OrderDAO();
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
@@ -123,7 +124,6 @@ public class AdminController extends HttpServlet {
 			user.setPhone(request.getParameter("u_Phone"));
 			user.setGender(request.getParameter("u_Gender"));
 			user.setBirth(request.getParameter("u_Birth"));
-			user.setZonecode(request.getParameter("u_Zonecode"));
 			user.setAddress(request.getParameter("u_Address"));
 
 			user.setAut(request.getParameter("u_Aut"));
@@ -383,16 +383,22 @@ public class AdminController extends HttpServlet {
 		} else if (PATH.equals("/saleList.admin")) {
 			System.out.println("판매리스트 목록 페이지");
 
-			SaleViewDAO saleViewDAO = new SaleViewDAO();
+			SaleDAO saleDAO = new SaleDAO();
 
 			// 모든 제품 목록을 가져옴
-			List<SaleView> saleList = saleViewDAO.getAll();
+			List<Sale> saleList = saleDAO.getAll();
 
 			// 가져온 제품 목록을 productList.jsp로 전달
 			request.setAttribute("saleList", saleList);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/viewAdmin/saleList.jsp");
 			dispatcher.forward(request, response);
 
+			
+			
+			
+			
+			
+			
 		} else if (PATH.equals("/saleDetail.admin")) {
 			System.out.println("상품 정보 상세보기 페이지");
 			// 버튼 누르면 상세 조회되게
@@ -412,8 +418,107 @@ public class AdminController extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/viewAdmin/saleDetail.jsp");
 			dispatcher.forward(request, response);
 
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			// ---------------------------------
+		} 	else if(PATH.equals("/orderPage.admin")){
+			System.out.println("주문 관리 페이지");
+			request.setAttribute("orderAll", orderDAO.getAll());
+
+			RequestDispatcher dispatchere = request.getRequestDispatcher("/viewAdmin/orderList.jsp");
+			dispatchere.forward(request, response);
+
+			
+			
+			
+		}else if(PATH.equals("/orderDelete.admin")) {
+			System.out.println("주문 삭제");
+
+			// 삭제할 주문의 ID 가져오기
+		    int Order_Id = Integer.parseInt(request.getParameter("odId"));
+
+		    // order1DAO를 사용하여 해당 주문을 삭제합니다.
+		    orderDAO.delete(Order_Id); // 해당 Order_Id에 해당하는 주문을 삭제하는 메소드를 가정합니다.
+		    
+		    RequestDispatcher dispatchere = request.getRequestDispatcher("orderPage.admin");
+			dispatchere.forward(request, response);
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		
+		} else if (PATH.equals("/getODetail.admin")) {
+		    System.out.println("주문 정보 상세보기 페이지");
+		    // 버튼 누르면 상세 조회되게
+		    int odId = Integer.parseInt(request.getParameter("odId"));
+
+		    Orders orders = orderDAO.getOrderId(odId);
+		    
+		    
+		    // 가져온 주문 상세 정보를 request 객체에 저장합니다.
+		    request.setAttribute("orders", orders);
+
+		    // 상세 페이지로 포워딩합니다.
+		    RequestDispatcher dispatcher = request.getRequestDispatcher("/viewAdmin/orderDetail.jsp");
+		    dispatcher.forward(request, response);
+		    
+		    
+		
+		} else if (PATH.equals("/orderDetail.admin")) {
+			System.out.println("주문 정보 상세보기 페이지");
+			// 버튼 누르면 상세 조회되게
+			int odId = Integer.parseInt(request.getParameter("odId"));
+
+			Orders order = orderDAO.getOrderId(odId);
+			
+//			int productId = order.getProduct_ID();
+			int userId = order.getUser_ID();
+
+			User user = uDao.getUser(userId);
+			
+			List<Option> options  = oDao.getOptionbyOrderId(odId);
+			
+			
+//			// 가져온 제품 정보를 request 객체에 저장합니다.
+			
+			
+			request.setAttribute("order", order);
+			request.setAttribute("user", user);
+			request.setAttribute("options", options);
+
+			// 상세 페이지로 포워딩합니다.
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/viewAdmin/orderDetail.jsp");
+			dispatcher.forward(request, response);
+
 			// ---------------------------------
 		}
-
+	
+		
 	}
 }

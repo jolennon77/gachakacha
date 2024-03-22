@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import dbconnection.MyDBConnection;
 import dto.Sale;
@@ -13,6 +15,7 @@ public class SaleDAO {
 	private PreparedStatement pstmt = null;
 	private ResultSet rs = null;
 
+	private String GETALL = "SELECT * FROM sale";
 	private String ADDSALE = "INSERT INTO Sale(Product_ID, Regular_Price, Sale_Price, Discount_Rate, Sale_Description) values(?, ?, ?, ?, ?)";
 	private String SALE_GET = "SELECT * FROM Sale WHERE Sale_ID=?";
 
@@ -57,5 +60,91 @@ public class SaleDAO {
 			MyDBConnection.close(rs, pstmt, con);
 		}
 		return sale;
+	}
+
+	public List<Sale> getAll() {
+	    List<Sale> saleList = new ArrayList<>();
+
+	    try {
+	        con = MyDBConnection.getConnection();
+	        pstmt = con.prepareStatement(GETALL);
+	        rs = pstmt.executeQuery();
+	        while (rs.next()) {
+	            Sale sale = new Sale();
+	            
+	            sale.setSale_ID(rs.getInt("Sale_ID"));
+	            
+	            int productId = rs.getInt("Product_ID");
+	            sale.setProduct_ID(productId);
+
+	            
+	            // 상품 아이디로부터 상품 이름 가져오기
+	            String productName = getProductNameByProductId(productId);
+	            sale.setProduct_Name(productName);
+//	            
+	            sale.setRegular_Price(rs.getInt("Regular_Price"));
+	            sale.setSale_Price(rs.getInt("Sale_Price"));
+	            sale.setDiscount_Rate(rs.getDouble("Discount_Rate"));
+	            sale.setSale_Description(rs.getString("Sale_Description"));
+	            
+	            // 상품 아이디별 옵션 수량을 가져와 Sale 객체에 추가
+	            int optionQty = getTotalQtyByProductId(productId);
+	            sale.setTotalQty(optionQty);
+	            
+	            saleList.add(sale);
+	        }
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        // DB 연결 닫기
+	        MyDBConnection.close(rs, pstmt, con);
+	    }
+	    return saleList;
+	}
+
+	private String getProductNameByProductId(int productId) {
+	    String productName = null;
+	    
+	    try {
+	        Connection con = MyDBConnection.getConnection(); // 지역 변수로 변경
+	        PreparedStatement pstmt = con.prepareStatement("SELECT Product_Name FROM Product WHERE Product_ID = ?");
+	        pstmt.setInt(1, productId);
+	        ResultSet rs = pstmt.executeQuery();
+	        
+	        if (rs.next()) {
+	            productName = rs.getString("Product_Name");
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        // ResultSet 닫기
+	        // MyDBConnection.close(rs, pstmt, con); // 필드에서 사용하지 않으므로 이 부분은 제거합니다.
+	    }
+	    
+	    return productName;
+	}
+
+	private int getTotalQtyByProductId(int productId) {
+	    int totalQty = -1; // 기본적으로 -1로 설정
+	    
+	    try {
+	        Connection con = MyDBConnection.getConnection(); // 지역 변수로 변경
+	        PreparedStatement pstmt = con.prepareStatement("SELECT SUM(Option_Qty) AS Total_Qty FROM ProductOption WHERE Product_ID = ?");
+	        pstmt.setInt(1, productId);
+	        ResultSet rs = pstmt.executeQuery();
+	        
+	        // 쿼리 결과가 있는 경우
+	        if (rs.next()) {
+	            totalQty = rs.getInt("Total_Qty"); // 총 수량을 가져옴
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        // ResultSet 닫기
+	        // MyDBConnection.close(rs, pstmt, con); // 필드에서 사용하지 않으므로 이 부분은 제거합니다.
+	    }
+
+	    return totalQty; // 총 수량 반환
 	}
 }

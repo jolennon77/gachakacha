@@ -53,4 +53,28 @@ public class MyDBConnection { // db접속과 접속&접속 끊기
 		}
 	}
 
+	
+	
+	
+	
+	public static void close(ResultSet rs, PreparedStatement pstmt) {
+		if (rs != null) {
+			try {
+				rs.close();
+				System.out.println("rs닫기 성공");
+			} catch (SQLException e) {
+				System.out.println("rs닫기 실패");
+			}
+		}
+		if (pstmt != null) {
+			try {
+				pstmt.close();
+				System.out.println("pstmt닫기 성공");
+			} catch (SQLException e) {
+				System.out.println("pstmt닫기 실패");
+			}
+		}
+		
+	}
+
 }

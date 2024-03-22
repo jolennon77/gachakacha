@@ -90,11 +90,11 @@
 										<tbody>
 											<c:forEach items="${saleList}" var="s">
 												<tr>
-													<td>${s.getSaleId()}</td>
-													<td><a href="saleDetail.admin?sId=${s.getSaleId()}&pId=${s.getProductId()}">${s.getProductName()}</a></td>
-													<td>${s.getRegularPrice()}</td>
-													<td>${s.getSalePrice()}</td>
-													<td>${s.getDiscountRate()}</td>
+													<td>${s.getSale_ID()}</td>
+												<td><a href="saleDetail.admin?sId=${s.getSale_ID()}&pId=${s.getProduct_ID()}">${s.getProduct_Name()}</a></td>
+													<td>${s.getRegular_Price()}</td>
+													<td>${s.getSale_Price()}</td>
+													<td>${s.getDiscount_Rate()}</td>
 													<td>${s.getTotalQty()}</td>
 												</tr>
 											</c:forEach>

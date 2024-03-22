@@ -49,12 +49,9 @@ public class SignupController extends HttpServlet {
 		String date = request.getParameter("date");
 		String birth = year+"-"+month+"-"+date;
 		
-		String zonecode = request.getParameter("zonecode");
-//		int zonecode = Integer.parseInt(request.getParameter("zonecode"));
 		String address1 = request.getParameter("address");
-		String address2 = request.getParameter("address_detail");
-		String address = address1 + address2;
-		
+		String address2 = request.getParameter("address");
+		String address = address1 +" "+address2;
 		
 		
 		user.setEmail(email);
@@ -63,7 +60,6 @@ public class SignupController extends HttpServlet {
 		user.setPhone(phone);
 		user.setGender(gender);
 		user.setBirth(birth);
-		user.setZonecode(zonecode);
 		user.setAddress(address);
 		uDao.insert(user);
 		

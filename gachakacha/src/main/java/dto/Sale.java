@@ -8,7 +8,9 @@ public class Sale {
 	private int sale_Price;
 	private double discount_Rate;
 	private String sale_Description;
+	private String Product_Name;
 
+	private int totalQty;
 	
 	
 	public int getSale_ID() {
@@ -48,4 +50,19 @@ public class Sale {
 		this.sale_Description = sale_Description;
 	}
 	
+	public String getProduct_Name() {
+		return Product_Name;
+	}
+	public void setProduct_Name(String product_Name) {
+		Product_Name = product_Name;
+	}
+
+	
+    public int getTotalQty() {
+        return totalQty;
+    }
+
+    public void setTotalQty(int totalQty) {
+        this.totalQty = totalQty;
+    }
 }

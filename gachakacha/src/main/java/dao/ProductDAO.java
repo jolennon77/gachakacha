@@ -121,32 +121,6 @@ public class ProductDAO {
 			MyDBConnection.close(rs, pstmt, con);
 		}
 	}
-
-//	public boolean deleteProductById(int productId) {
-//
-//		try {
-//			con = MyDBConnection.getConnection();
-//			pstmt = con.prepareStatement(PRODUCT_DELET);
-//			pstmt.setInt(1, productId);
-//
-//			// 쿼리 실행
-//			int rowsAffected = pstmt.executeUpdate();
-//
-//			return rowsAffected > 0;
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//			return false;
-//		} finally {
-//			// PreparedStatement 닫기
-//			if (pstmt != null) {
-//				try {
-//					pstmt.close();
-//				} catch (SQLException e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		}
-//	}
 	public void updateProductById(Product product) {
 	    try {
 	        con = MyDBConnection.getConnection();

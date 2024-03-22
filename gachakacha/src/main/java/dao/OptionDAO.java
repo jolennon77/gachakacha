@@ -23,8 +23,8 @@ public class OptionDAO {
 	private String OPTION_LIST = "SELECT * FROM ProductOption WHERE Product_ID = ?";
 	private String OPTION_DELETE = "DELETE FROM ProductOption WHERE Option_ID = ?";
 	private String OPTION_UPDATE = "UPDATE ProductOption SET Option_Name = ?, Option_Grade = ?, Option_Img = ?, Option_Qty = ? WHERE Option_ID = ?";
+	private String TOTALCOUNT = "SELECT Product_ID, SUM(Option_Qty) AS Total_Qty FROM ProductOption WHERE Product_ID = ? GROUP BY Product_ID;";
 
-	private String OPTION_ADD = "DELETE FROM ProductOption WHERE Option_ID = ?";
 	
 //  getAll() 메서드 추가
 	public List<Option> getProductOptionsById(int productId) {
@@ -102,5 +102,41 @@ public class OptionDAO {
 			MyDBConnection.close(rs, pstmt, con);
 		}
 	}
-	
+		
+		
+
+
+		public List<Option> getOptionbyOrderId(int orderId) {
+			
+			
+			List<Option> options = new ArrayList<>();
+			try {
+				con = MyDBConnection.getConnection();
+				String query = "SELECT ProductOption.* " +
+                        "FROM OrdersDetail " +
+                        "JOIN ProductOption ON OrdersDetail.Option_ID = ProductOption.Option_ID " +
+                        "WHERE OrdersDetail.Orders_ID = ?";
+				
+				pstmt = con.prepareStatement(query);
+				pstmt.setInt(1, orderId);
+				rs = pstmt.executeQuery();
+				while (rs.next()) {
+
+					Option option = new Option();
+					option.setOption_ID(rs.getInt("Option_ID"));
+					option.setProduct_ID(rs.getInt("Product_ID"));
+					option.setOption_Name(rs.getString("Option_Name"));
+					option.setOption_Grade(rs.getString("Option_Grade"));
+					option.setOption_Qty(rs.getInt("Option_Qty"));
+					option.setOption_Img(rs.getString("Option_Img"));
+					options.add(option);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				MyDBConnection.close(rs, pstmt, con);
+			}
+			return options;
+		}
+		
 }

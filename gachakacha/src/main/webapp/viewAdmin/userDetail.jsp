@@ -117,11 +117,6 @@
 												</td>
 											</tr>
 											<tr>
-												<th>우 편 번 호</th>
-												<!-- 대표 제품명 입력 필드 -->
-												<td>
-													<input class="text__block"  type="text" name="u_Zonecode" id="u_Zonecode" value="${user.getZonecode()}">
-												</td>
 												<th>주 소</th>
 												<!-- 제품 이미지 URL 입력 필드 -->
 												<td colspan="4">

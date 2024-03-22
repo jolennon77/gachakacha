@@ -20,10 +20,10 @@ public class UserDAO {
 
 	private String GETUSER = "SELECT * FROM User WHERE User_Email = ?";
 	private String GETUSERBYUID = "SELECT * FROM User WHERE User_ID = ?";
-	private String ADDUSER = "INSERT INTO User(User_Email, User_Name, User_Pwd, User_Phone, User_Gender, User_Birth, User_Zonecode, User_Address) values(?, ?, ?, ?, ?, ?, ?, ?)";
+	private String ADDUSER = "INSERT INTO User(User_Email, User_Name, User_Pwd, User_Phone, User_Gender, User_Birth, User_Address) values(?, ?, ?, ?, ?, ?, ?)";
 	private String GETALLUSER = "SELECT * FROM User";
 	private String DELETEUSER = "DELETE FROM User WHERE User_ID = ?";
-	private String UPDATEUSER = "UPDATE User SET User_Email = ?, User_name = ?, User_Pwd = ?, User_Phone = ?, User_Gender = ?, User_Birth = ?, User_Zonecode = ?, User_Address = ?, User_Aut = ? WHERE User_ID = ?";
+	private String UPDATEUSER = "UPDATE User SET User_Email = ?, User_name = ?, User_Pwd = ?, User_Phone = ?, User_Gender = ?, User_Birth = ?, User_Address = ?, User_Aut = ? WHERE User_ID = ?";
 	   
 	public User getUser(String email) {
 		User user = null;
@@ -43,13 +43,11 @@ public class UserDAO {
 				user.setPassword(rs.getString("User_Pwd"));
 				user.setPhone(rs.getString("User_Phone"));
 				user.setGender(rs.getString("User_Gender"));
-				user.setZonecode(rs.getString("User_Zonecode"));
 				user.setAddress(rs.getString("User_Address"));
 				user.setBirth(rs.getString("User_Birth"));
 				user.setAut(rs.getString("User_Aut"));
 				user.setsingupDate(rs.getDate("User_SignupDate"));// authority
 			}
-			;
 
 		} catch (
 
@@ -83,7 +81,6 @@ public class UserDAO {
 				user.setPassword(rs.getString("User_Pwd"));
 				user.setPhone(rs.getString("User_Phone"));
 				user.setGender(rs.getString("User_Gender"));
-				user.setZonecode(rs.getString("User_Zonecode"));
 				user.setAddress(rs.getString("User_Address"));
 				user.setBirth(rs.getString("User_Birth"));
 				user.setAut(rs.getString("User_Aut"));
@@ -126,10 +123,9 @@ public class UserDAO {
 				user.setPhone(rs.getString(5));// phone
 				user.setGender(rs.getString(6));// gender
 				user.setBirth(rs.getString(7));// birth
-				user.setZonecode(rs.getString(8));// zonecode
-				user.setAddress(rs.getString(9));// address
-				user.setsingupDate(rs.getDate(10));// date
-				user.setAut(rs.getString(11));// authority
+				user.setAddress(rs.getString(8));// address
+				user.setsingupDate(rs.getDate(9));// date
+				user.setAut(rs.getString(10));// authority
 
 				members.add(user);
 			} // end of while
@@ -155,8 +151,7 @@ public class UserDAO {
 			pstmt.setString(4, user.getPhone());
 			pstmt.setString(5, user.getGender());
 			pstmt.setString(6, user.getBirth());
-			pstmt.setString(7, user.getZonecode());
-			pstmt.setString(8, user.getAddress());
+			pstmt.setString(7, user.getAddress());
 
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -197,10 +192,9 @@ public class UserDAO {
 		        pstmt.setString(4, user.getPhone());
 		        pstmt.setString(5, user.getGender());
 		        pstmt.setString(6, user.getBirth());
-		        pstmt.setString(7, user.getZonecode());
-		        pstmt.setString(8, user.getAddress());
-		        pstmt.setString(9, user.getAut());
-		        pstmt.setInt(10, user.getId());
+		        pstmt.setString(7, user.getAddress());
+		        pstmt.setString(8, user.getAut());
+		        pstmt.setInt(9, user.getId());
 		        pstmt.executeUpdate();
 		    } catch (SQLException e) {
 		        e.printStackTrace();
@@ -208,4 +202,28 @@ public class UserDAO {
 		        MyDBConnection.close(rs, pstmt, con);
 		    }
 		}
+		
+		   // 이메일 중복 확인 메서드
+		public boolean checkEmailExists(String email) {
+		    boolean exists = false;
+
+		    try {
+		        con = MyDBConnection.getConnection();
+		        String sql = "SELECT COUNT(*) FROM User WHERE User_Email = ?"; // 수정된 부분
+		        pstmt = con.prepareStatement(sql);
+		        pstmt.setString(1, email);
+		        rs = pstmt.executeQuery();
+		        if (rs.next()) {
+		            int count = rs.getInt(1);
+		            exists = count > 0;
+		        }
+		    } catch (SQLException e) {
+		        e.printStackTrace();
+		    } finally {
+		          MyDBConnection.close(rs, pstmt, con);
+		    }
+
+		    return exists;
+		}
 }
+		
