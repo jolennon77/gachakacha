@@ -73,24 +73,138 @@
 							<div class="card-body">
 								<div class="table-responsive">
 
-주문번호 : ${order.getOrders_ID()}<br>
-주문날짜 : ${order.getOrders_Date()}<br>
-주문상태 : ${order.getOrders_Status()}<br>
-송장번호 : ${order.getShip_Number()}<br><br>
+									<div class="table-responsive">
+										<!-- start of 부모 제품 등록 폼 -->
 
-유저아이디 : ${user.getEmail()}<br>
-유저이름 : ${user.getName()}<br>
-유저연락처 : ${user.getPhone()}<br>
-유저 주소 : ${user.getAddress()}<br><br>
- <c:forEach items="${options}" var="option">
-옵션아이디 : ${option.getOption_ID()}<br>                               
-옵션 이름 : ${option.getOption_Name()}<br>
-옵션 등급 : ${option.getOption_Grade()}<br>
-옵션 이미지 : ${option.getOption_Img()}<br><br>
-</c:forEach> 
+										<form action="productInsert.admin" method="post">
+											<div class="mainProduct input__block">
+												<table
+													class="table table-bordered mainProductTable table-input"
+													id="dataTable" width="100%" cellspacing="0">
 
-구현해야될거 : 테이블 모양, 삭제, 수정(옵션은 수정x ), 목록
+													<colgroup>
+														<col width="15%">
+														<col width="35%">
+														<col width="15%">
+														<col width="35%">
+													</colgroup>
 
+
+
+													<tbody>
+														<!-- 제품 등록 폼 -->
+														<tr>
+															<th>주 문 번 호</th>
+															<!-- 제품 종류 선택 라디오 버튼 -->
+															<td><input class="text__block" type="text" value="${order.getOrders_ID()}" readonly></td>
+
+															<th>주 문 날 짜</th>
+															<td><input class="text__block" type="text" value="${order.getOrders_Date()}" readonly></td>
+														</tr>
+														<tr>
+
+
+															<th>주 문 자 명</th>
+															<td><input class="text__block" type="text" value="${user.getName()}" readonly></td>
+
+															<th>연 락 처</th>
+															<td><input class="text__block"  type="text" value="${user.getPhone()}" readonly></td>
+														</tr>
+
+														<tr>
+
+
+															<th>송 장 번 호</th>
+															<td><input class="text__block"  type="text" name="Ship_Number" id="Ship_Number" value="${order.getShip_Number()}"></td>
+
+
+
+															<th>주 문 상 태</th>
+															<td><input class="text__block"  type="text" name="Orders_Status" id="Orders_Status" value="${order.getOrders_Status()}" readonly></td>
+
+														</tr>
+
+
+														<tr>
+															<th>주 소</th>
+															<td colspan="4"><input class="text__block"  type="text" value="${user.getAddress()}" readonly></td>
+														</tr>
+														<tr>
+															<th>메 모</th>
+															<td colspan="4">
+															<div class="s_Cont">
+															<textarea class="text__block" rows="3" cols="50" name="Orders_Memo" id="Orders_Memo" >${order.getOrders_Memo()}</textarea>
+															<!-- <input class="text__block" type="text" name="s_Cont" id="s_Cont"> -->
+															</div>
+															
+														</tr>
+
+													</tbody>
+
+
+
+												</table>
+											</div>
+										</form>
+										
+									
+									<div class="basic_submit_zone" >
+                                    <input class="btn submitbtn updatebtn" type="submit" value="수정">
+                                    <button class="btn submitbtn deletebtn" type="button" onclick="window.location.href='orderDelete.admin?odId=${order.getOrders_ID()}';">삭제</button>
+                                    <button class="btn submitbtn listbtn" type="button" onclick="window.location.href='orderPage.admin';">목록</button>
+                                    </div>
+                                    <br>
+                                    <br>
+                                    
+
+										<!-- 옵션 정보를 표시하는 테이블 -->
+
+
+										<div class="option_table">
+											<div class="option input__block">
+												<!-- 옵션 수정 폼의 form 태그 시작 -->
+												<table class="table optionTable" id="dataTable" width="100%"
+													cellspacing="0">
+													<colgroup>
+														<col width="12%">
+														<col>
+														<col width="12%">
+														<col width="12%">
+													</colgroup>
+													<tr>
+														<th class="headth">제 품 사 진</th>
+														<th class="headth">옵 션 이 름</th>
+														<th class="headth">등 급</th>
+														<th class="headth">구 매 수 량</th>
+													</tr>
+													<tbody>
+														<c:forEach items="${options}" var="option">
+															<tr>
+																<td style="padding: 0;">
+																	<div class="thumnail">
+																		<img src="${option.getOption_Img()}">
+																	</div>
+																</td>
+
+																<td><input class="text__block" type="text"
+																	name="option_name" id="option_name"
+																	value="${option.getOption_Name()}"></td>
+																<td><input class="text__block" type="text"
+																	name="option_Img" id="option_Img"
+																	value="${option.getOption_Grade()}">
+																<td><input class="text__block" type="text"
+																	name="option_Qty" id="option_Qty"
+																	value="${option.getOrder_Qty()}"></td>
+															</tr>
+														</c:forEach>
+													</tbody>
+												</table>
+											</div>
+										</div>
+
+
+
+									</div>
 
 								</div>
 								<!-- /.container-fluid -->

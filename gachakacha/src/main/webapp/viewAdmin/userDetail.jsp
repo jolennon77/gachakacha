@@ -159,12 +159,12 @@
 									</table>
 									
 								</div>
-								<div class="product_insert_submit">
-											<input class="btn submitbtn" type="submit" value="수정">
+								<div class="basic_submit_zone">
+											<input class="btn submitbtn updatebtn" type="submit" value="수정">
 											<input type="hidden" name="uId" value="${user.getId()}">
-											<button class="btn submitbtn" type="button"
+											<button class="btn submitbtn deletebtn" type="button"
 												onclick="window.location.href='userDelete.admin?uId=${user.getId()}';">삭제</button>
-											<button class="btn submitbtn" type="button"
+											<button class="btn submitbtn listbtn" type="button"
 												onclick="window.location.href='userList.admin';">목록</button>
 										</div>
 									</form>

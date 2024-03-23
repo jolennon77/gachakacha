@@ -151,11 +151,9 @@
 												</tbody>
 											</table>
 										</div>
-										<div class="product_insert_submit">
-											<input class="btn submitbtn" type="submit" value="등록">
-											<button class="btn submitbtn" type="button"
-												onclick="window.location.href='productDetail.admin?pId=${product.getProduct_Id()}';">수정</button>
-											<button class="btn submitbtn" type="button"
+										<div class="basic_submit_zone">
+											<input class="btn submitbtn updatebtn" type="submit" value="등록">
+											<button class="btn submitbtn listbtn" type="button"
 												onclick="window.location.href='productList.admin';">목록</button>
 										</div>
 									

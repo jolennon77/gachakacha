@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -35,12 +36,14 @@ public class LoginController extends HttpServlet {
 		String password = request.getParameter("password");
 
 		// 이메일과 비밀번호가 유효한지 확인
-		if (email == null || email.isEmpty() || password == null || password.isEmpty()) {
-			// 이메일 또는 비밀번호가 비어있는 경우 로그인 페이지로 이동
-			RequestDispatcher dispatcher = request.getRequestDispatcher("loginView.do");
-			dispatcher.forward(request, response);
-			return;
-		}
+		 if (email == null || email.isEmpty() || password == null || password.isEmpty()) {
+		        // 이메일 또는 비밀번호가 비어있는 경우 오류 메시지 설정
+		        request.setAttribute("errorMessage", "이메일과 비밀번호를 모두 입력해주세요.");
+		        // 로그인 페이지로 포워딩
+		        RequestDispatcher dispatcher = request.getRequestDispatcher("loginView.do");
+		        dispatcher.forward(request, response);
+		        return;
+		    }
 
 		// DB에서 사용자 정보 가져오기
 		UserDAO dao = new UserDAO();
@@ -51,13 +54,18 @@ public class LoginController extends HttpServlet {
 			// 세션에 사용자 정보 저장
 			 HttpSession session = request.getSession();
 	            session.setAttribute("user", user);
-	            response.sendRedirect(request.getContextPath() + "/main.do");
-	        } else {
-	            // 실패 시
-	            request.setAttribute("errorMessage", "이메일 또는 비밀번호가 올바르지 않습니다.");
-	            RequestDispatcher dispatcher = request.getRequestDispatcher("loginView.do");
-	            dispatcher.forward(request, response);
 	            
-	        }
-	    }
-	}
+	            // JavaScript 함수 호출하여 팝업 알림 표시
+	            response.setContentType("text/html;charset=UTF-8");
+	            PrintWriter out = response.getWriter();
+	            out.println("<script>alert('"+ user.getName() + "님, 환영합니다!'); window.location.href='main.do';</script>");
+	            out.flush();
+		  } else {
+		        // 실패 시 오류 메시지 설정
+		        request.setAttribute("errorMessage", "이메일 또는 비밀번호가 올바르지 않습니다.");
+		        // 로그인 페이지로 포워딩
+		        RequestDispatcher dispatcher = request.getRequestDispatcher("loginView.do");
+		        dispatcher.forward(request, response);
+		    }
+		}
+}

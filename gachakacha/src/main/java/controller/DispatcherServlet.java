@@ -39,17 +39,6 @@ public class DispatcherServlet extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
 			dispatcher.forward(request, response);
 			
-//		} else if (PATH.equals("/insertBoardView.do")) {
-//			System.out.println("글 등록 화면으로 이동");
-//
-//			RequestDispatcher dispatcher = request.getRequestDispatcher("/board/insertBoard.jsp");
-//			dispatcher.forward(request, response);
-//
-//		} else if (PATH.equals("/insertUserView.do")) {
-//			System.out.println("회원 가입 화면으로 이동");
-//
-//			RequestDispatcher dispatcher = request.getRequestDispatcher("/board/insertUser.jsp");
-//			dispatcher.forward(request, response);
 
 		} else if (PATH.equals("/infoBord.do")) {
 			System.out.println("공지사항으로 이동");
@@ -67,14 +56,6 @@ public class DispatcherServlet extends HttpServlet {
 			
 			
 			
-//-----------------------------------------어드민 영역--------------------------------------
-//			//어드민 페이지로 이동
-//		} else if (PATH.equals("/adminPage.do")) {
-//			System.out.println("어드민페이지 이동");
-//			// 어드민페이지 이동을 처리하는 서블릿으로 포워딩
-//			RequestDispatcher dispatcher = request.getRequestDispatcher("/adminPage.admin");
-//			dispatcher.forward(request, response);
-//			
 		}
 	}
 }

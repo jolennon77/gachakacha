@@ -112,10 +112,7 @@ public class OptionDAO {
 			List<Option> options = new ArrayList<>();
 			try {
 				con = MyDBConnection.getConnection();
-				String query = "SELECT ProductOption.* " +
-                        "FROM OrdersDetail " +
-                        "JOIN ProductOption ON OrdersDetail.Option_ID = ProductOption.Option_ID " +
-                        "WHERE OrdersDetail.Orders_ID = ?";
+				String query = "SELECT OrdersDetail.Option_ID, ProductOption.Product_ID, ProductOption.Option_Name, ProductOption.Option_Grade, OrdersDetail.Order_Qty, ProductOption.Option_Img FROM OrdersDetail JOIN ProductOption ON OrdersDetail.Option_ID = ProductOption.Option_ID WHERE OrdersDetail.Orders_ID = ?";
 				
 				pstmt = con.prepareStatement(query);
 				pstmt.setInt(1, orderId);
@@ -127,7 +124,7 @@ public class OptionDAO {
 					option.setProduct_ID(rs.getInt("Product_ID"));
 					option.setOption_Name(rs.getString("Option_Name"));
 					option.setOption_Grade(rs.getString("Option_Grade"));
-					option.setOption_Qty(rs.getInt("Option_Qty"));
+					option.setOrder_Qty(rs.getInt("Order_Qty"));
 					option.setOption_Img(rs.getString("Option_Img"));
 					options.add(option);
 				}

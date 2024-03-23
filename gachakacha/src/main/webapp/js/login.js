@@ -19,6 +19,8 @@ $(document).ready(function() {
 			"opacity": "1",
 			"display": "block"
 		});
+		 signin_btn.text("회원가입");
+    form.attr("action", "signup");
 		// Show additional inputs for 회원가입
 		$("#additionalInputs").show();
 
@@ -39,6 +41,8 @@ $(document).ready(function() {
 			"opacity": "0",
 			"display": "none"
 		});
+		signin_btn.text("로그인");
+    form.attr("action", "login");
 		// Hide additional inputs for 회원가입
 		$("#additionalInputs").hide();
 		form.attr("action", "login");
@@ -74,6 +78,7 @@ $(document).ready(function() {
 		}
 		$('#date').html(htmlDay); // 수정된 부분
 	});
+
 
 	// 사용자가 이메일 입력란을 벗어날 때마다 이메일 중복 확인
 	$("#email").blur(function() {
@@ -153,50 +158,7 @@ $(document).ready(function() {
 		}
 	});
 
-	// 회원가입 폼 유효성 검사
-	function validateSignupForm() {
-		let email = $("#email").val();
-		let password = $("#password").val();
-		let password_check = $("#password_check").val();
-		let name = $("#name").val();
-		let phone_1 = $("#phone_1").val();
-		let phone_2 = $("#phone_2").val();
-		let phone_3 = $("#phone_3").val();
-		let zonecode = $("#zonecode").val();
-		let address = $("#address").val();
-		let address_detail = $("#address_detail").val();
-		let gender = $("input[name='gender']:checked").val();
-		let year = $("#year").val();
-		let month = $("#month").val();
-		let date = $("#date").val();
-
-		if (email === "" || password === "" || password_check === "" ||
-			name === "" || phone_1 === "" || phone_2 === "" ||
-			phone_3 === "" || zonecode === "" || address === "" ||
-			address_detail === "" || gender === undefined || year === "" ||
-			month === "" || date === "") {
-			alert("모든 항목을 입력해주세요.");
-			return false;
-		}
-	}
-
-	// 로그인 폼 유효성 검사
-	function validateLoginForm() {
-		let email = $("#email").val();
-		let password = $("#password").val();
-		// 이메일, 비밀번호 등 로그인 필드 유효성 검사를 수행합니다.
-		// 필요한 경우 추가 유효성 검사를 수행할 수 있습니다.
-		if (email === "") {
-			alert("이메일을 입력해주세요.");
-			return false;
-		}
-		if (password === "") {
-			alert("비밀번호를 입력해주세요.");
-			return false;
-		}
-		// 추가적인 유효성 검사를 수행할 수 있습니다.
-		return true;
-	}
+	
 
 
 
@@ -211,6 +173,59 @@ $(document).ready(function() {
 		// 폼이 바뀌면 버튼 활성화
 		checkEnableButton();
 	});
+	
+	
+	function openPostcode() {
+		new daum.Postcode({
+			oncomplete: function(data) {
+
+				var zonecode = '';//우편번호 변수
+				var addr = ''; // 주소 변수
+				var extraAddr = ''; // 참고항목 변수
+
+				//사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+				if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+					addr = data.roadAddress;
+				} else { // 사용자가 지번 주소를 선택했을 경우(J)
+					addr = data.jibunAddress;
+				}
+
+				// 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+				if (data.userSelectedType === 'R') {
+					// 법정동명이 있을 경우 추가한다. (법정리는 제외)
+					// 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+					if (data.bname !== ''
+						&& /[동|로|가]$/g.test(data.bname)) {
+						extraAddr += data.bname;
+					}
+					// 건물명이 있고, 공동주택일 경우 추가한다.
+					if (data.buildingName !== ''
+						&& data.apartment === 'Y') {
+						extraAddr += (extraAddr !== '' ? ', '
+							+ data.buildingName : data.buildingName);
+					}
+					// 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+					if (extraAddr !== '') {
+						extraAddr = ' (' + extraAddr + ')';
+					}
+					// 조합된 참고항목을 해당 필드에 넣는다.
+					document.getElementById("address1").value = data.zonecode + " " + addr + " " + extraAddr;
+
+				} else {
+					document.getElementById("address1").value = data.zonecode + addr;
+				}
+
+				// 우편번호와 주소 정보를 해당 필드에 넣는다.
+				//document.getElementById('zonecode').value = data.zonecode + addr;
+				/* document.getElementById("sample6_address").value = addr; */
+				// 커서를 상세주소 필드로 이동한다.
+				document.getElementById("address2")
+					.focus();
+			}
+		}).open();
+	}
+	
+	
 });
 
 // 회원가입 버튼 활성화 함수

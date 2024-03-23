@@ -13041,14 +13041,14 @@ border: 1px solid #e3e6f0;
 }
 
 .fa-square-plus {
-	color: #47b824;
+	color: #1c597f;
 	font-size: 1.5rem;
 }
 .fa-square-minus{
-	color: #e43f2f;
+	color: #7f1c1c;
 	font-size: 1.5rem;
 }
-
+	
 
 form .input__block input,
 .input__block input {
@@ -13096,7 +13096,7 @@ display: flex;
 }
 #minibtnOp,
 #minibtn{
-	background-color: #47b824;
+	/* background-color: #47b824; */
 	margin-left: 0.15rem;
 	margin-right: 0.15rem;
 	color: white;
@@ -13104,7 +13104,7 @@ display: flex;
     white-space: nowrap; /* 텍스트 줄바꿈 금지 */
 	border-radius: 4px;
 	border: none;
-	background-color: #47b824;
+	/* background-color: #47b824; */
 	padding: 0 5px ;
 }
 
@@ -13139,4 +13139,26 @@ display: flex;
     /* font-family: "Montserrat", sans-serif; */
     background: rgba(15, 19, 42, 0.1);
     color: rgba(15, 19, 42, 0.6);
+}
+
+
+.basic_submit_zone{
+	display: flex;
+    justify-content: flex-end;
+    margin-top:1rem;
+    margin-right:20%;
+	
+}
+
+.updatebtn{
+	background-color: #1c597f;
+	
+	
+}
+.deletebtn{
+	background-color: #7f1c1c;
+	
+}
+.listbtn{
+	background-color: #5f482f;
 }

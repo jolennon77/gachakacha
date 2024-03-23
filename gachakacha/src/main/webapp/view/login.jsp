@@ -9,13 +9,19 @@
 <title>Login Page</title>
 
 <link rel="stylesheet" type="text/css" href="./css/login.css" />
-<link rel="stylesheet" type="text/css" href="./css/jquery-ui.css" />
+<script src="./js/loginValidate.js"></script>
+<script>
+if (${not empty errorMessage}) {
+    // errorMessage의 내용을 알림으로 표시
+    alert("${errorMessage}");
+}
 
+function showWelcomeMessage(userName) {
+    alert(userName + "님, 환영합니다!");
+}
+</script>
 </head>
 <body>
-    <div id="errorMessage" >
-        <p id="errorMessageContent"></p>
-    </div>    
 
     <div class="container">
         <div class="logindiv">
@@ -107,5 +113,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="./js/login.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="./js/loginDaumAddress.js"></script>
 
 </html>

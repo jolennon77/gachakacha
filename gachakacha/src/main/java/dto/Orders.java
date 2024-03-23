@@ -1,18 +1,25 @@
 package dto;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Orders {
 	
 	 private int Orders_ID;
 	 private int User_ID;
 	 private int Product_ID;
-	 private Date Orders_Date;
+	 private Timestamp Orders_Date;
 	 private String Orders_Status;
 	 private String Ship_Number;
 	 private String Product_Img;
+	 private String Orders_Memo;
 	 
-	 
+	public String getOrders_Memo() {
+		return Orders_Memo;
+	}
+	public void setOrders_Memo(String orders_Memo) {
+		Orders_Memo = orders_Memo;
+	}
 	public String getProduct_Img() {
 		return Product_Img;
 	}
@@ -37,10 +44,10 @@ public class Orders {
 	public void setProduct_ID(int product_ID) {
 		Product_ID = product_ID;
 	}
-	public Date getOrders_Date() {
+	public Timestamp getOrders_Date() {
 		return Orders_Date;
 	}
-	public void setOrders_Date(Date orders_Date) {
+	public void setOrders_Date(Timestamp orders_Date) {
 		Orders_Date = orders_Date;
 	}
 	public String getOrders_Status() {

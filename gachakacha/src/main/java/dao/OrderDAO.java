@@ -39,16 +39,12 @@ public class OrderDAO {
 				order.setProduct_ID(productId);
 				String img = getProductImgByProductId(productId);
 				
-				order.setOrders_Date(rs.getDate("Orders_Date"));
+				order.setOrders_Date(rs.getTimestamp("Orders_Date"));
 				order.setOrders_Status(rs.getString("Orders_Status"));
 				order.setShip_Number(rs.getString("Ship_Number"));
+				order.setOrders_Memo(rs.getString("Orders_Memo"));
+				
 				order.setProduct_Img(img);
-
-
-				
-	        	
-	        	
-				
 				
 				orders.add(order);
 
@@ -99,10 +95,10 @@ public class OrderDAO {
 	        	order = new Orders();
 	        	order.setOrders_ID(rs.getInt("Orders_ID"));
 	        	order.setUser_ID(rs.getInt("User_ID"));
-	        	order.setOrders_Date(rs.getDate("Orders_Date"));
+	        	order.setOrders_Date(rs.getTimestamp("Orders_Date"));
 	        	order.setOrders_Status(rs.getString("Orders_Status"));
 	        	order.setShip_Number(rs.getString("Ship_Number"));
-	            
+	        	order.setOrders_Memo(rs.getString("Orders_Memo"));
 	        }
 	    } catch (SQLException e) {
 	        e.printStackTrace();

@@ -83,7 +83,6 @@
 												<th class="headth">주문 일자</th>
 												<th class="headth">결제 상태</th>
 												<th class="headth">운송 번호</th>
-												<th class="headth">수정/삭제</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -103,8 +102,7 @@
 												<td>${order.getOrders_Status()}</td>
 												<td>${order.getShip_Number()}</td>
 
-												<td><a
-													href="orderDelete.admin?odId=${order.getOrders_ID()}">삭제테스트</a></td>
+												
 											</tr>
 										</c:forEach>
 									</tbody>

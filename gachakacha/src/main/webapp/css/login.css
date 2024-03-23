@@ -111,7 +111,7 @@ form .input__block.signup-input__block::before {
 	content: "";
 	position: absolute;
 	top: -15px;
-	left: 150px;
+	left: 119px;
 	display: block;
 	width: 0;
 	height: 0;

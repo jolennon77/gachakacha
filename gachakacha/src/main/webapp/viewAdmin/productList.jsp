@@ -74,7 +74,7 @@
 											<col width="8%">
 											<col width="7%">
 											<col width="10%">
-											<col>
+											<col width="15%">
 											<col>
 											<col width="8%">
 											<col width="8%">
@@ -113,8 +113,8 @@
 													<td><a href="productDetail.admin?pId=${p.getProduct_Id()}">${p.getProduct_Name()}</a></td>
 													<td>${p.getProduct_Con()}</td>
 													<td>${p.getProduct_Price()}</td>
-													<td><button class="btn submitbtn" id="minibtn" type="button" onclick="window.location.href='saleInsertForm.admin?pId=${p.getProduct_Id()}';">판매등록</button></td>
-													<td><button class="btn submitbtn" id="minibtn" type="button" onclick="window.location.href='saleInsertForm.admin?pId=${p.getProduct_Id()}';">리뷰목록</button></td>
+													<td><button class="btn submitbtn updatebtn" id="minibtn" type="button" onclick="window.location.href='saleInsertForm.admin?pId=${p.getProduct_Id()}';">판매등록</button></td>
+													<td><button class="btn submitbtn listbtn" id="minibtn" type="button" onclick="window.location.href='saleInsertForm.admin?pId=${p.getProduct_Id()}';">리뷰목록</button></td>
 												</tr>
 											</c:forEach>
 										</tbody>

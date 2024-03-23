@@ -39,31 +39,19 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded" id="submenu">
                         <h6 class="collapse-header">상 품 관 리 </h6>
-                        <a class="collapse-item" href="productInsertForm.admin">상 품 등 록</a>
-                        <a class="collapse-item" href="productList.admin">상 품 조 회</a>
+                        <a class="collapse-item" href="productInsertForm.admin">재 고 등 록</a>
+                        <a class="collapse-item" href="productList.admin">재 고 조 회</a>
                         <!-- <a class="collapse-item" href="#">판 매 등 록</a> -->
-                        <a class="collapse-item" href="saleList.admin">판 매 조 회</a>
+                        <a class="collapse-item" href="saleList.admin">판 매 상 품 조 회</a>
                     </div>
                 </div>
             </li>
 
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fa-solid fa-truck-fast"></i>&nbsp;
-                    <span>주 문 관 리</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded" id="submenu">
-                        <h6 class="collapse-header">주 문 관 리</h6>
-                        <a class="collapse-item" href="orderPage.admin">주 문 조 회</a>
-                        <a class="collapse-item" href="#">출 고 조 회</a>
-                    </div>
-                </div>
-            </li>
-
+                <li class="nav-item">
+                <a class="nav-link" href="orderPage.admin">
+                    <i class="fa-solid fa-store"></i>&nbsp;
+                    <span>주 문 관 리</span></a>
+            	</li>            	
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">

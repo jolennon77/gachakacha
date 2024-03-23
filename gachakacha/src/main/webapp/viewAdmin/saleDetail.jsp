@@ -13,7 +13,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>상품 등록</title>
+<title>판매상품정보</title>
 
 <!-- Custom fonts for this template -->
 <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -59,7 +59,7 @@
 					<!-- Page Heading -->
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">상품 등록</h1>
+						<h1 class="h3 mb-0 text-gray-800">판매 상품 정보</h1>
 						<a href="#"
 							class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
 							class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
@@ -151,12 +151,11 @@
 												</tbody>
 											</table>
 										</div>
-										<div class="product_insert_submit">
-											<input class="btn submitbtn" type="submit" value="등록">
-											<button class="btn submitbtn" type="button"
-												onclick="window.location.href='productDetail.admin?pId=${product.getProduct_Id()}';">수정</button>
-											<button class="btn submitbtn" type="button"
-												onclick="window.location.href='productList.admin';">목록</button>
+										<div class="basic_submit_zone">
+											<input class="btn submitbtn updatebtn" type="submit" value="수정">
+											
+											<button class="btn submitbtn listbtn" type="button"
+												onclick="window.location.href='saleList.admin';">목록</button>
 										</div>
 									
 									<br> <br> <br>
@@ -183,7 +182,7 @@
 													<th rowspan="3">
 														<div class="s_Cont">
 															<textarea class="text__block" rows="4" cols="50"
-																name="s_Description" id="s_Description"value="${sale.getSale_Description()}"></textarea>
+																name="s_Description" id="s_Description">${sale.getSale_Description()}</textarea>
 															<!-- <input class="text__block" type="text" name="s_Cont" id="s_Cont"> -->
 														</div>
 													</th>

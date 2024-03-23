@@ -12,7 +12,7 @@ pageEncoding="UTF-8"%>
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>상품 정보</title>
+    <title>재고 정보</title>
 
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -220,7 +220,7 @@ pageEncoding="UTF-8"%>
                                     <button class="btn submitbtn" type="button" onclick="window.location.href='productList.admin';">목록</button>
                                     </div>
                                 </form>
-                                <br> <br> <br>
+                                <br> <br>
 
 
                                 <!-- 옵션 정보를 표시하는 테이블 -->
@@ -254,8 +254,7 @@ pageEncoding="UTF-8"%>
                                             </tr>
                                             <tbody>
                                             <c:forEach items="${optionList}" var="option">
-                                                <form action="updateOption.admin" method="post"
-                                                      name="option_update_form">
+                                                <form action="updateOption.admin" method="post" name="option_update_form">
 
                                                     <tr>
                                                         <td>${option.getOption_ID()}</td>
@@ -272,18 +271,19 @@ pageEncoding="UTF-8"%>
                                                         </td>
                                                         <td>
                                                             <div class="select__block">
-                                                                <select class="option-select">
-                                                                    <option value="A" ${optionGrade eq
-                                                                    'A' ? 'selected' : ''}>A</option>
-                                                                    <option value="B" ${optionGrade eq
+                                                                <select class="option-select" name="option_Grade" id="option_Grade">
+                                                                    <option value="A" ${option.getOption_Grade() eq 'A' ? 'selected' : ''}>A</option>
+                                                                    
+                                                                    
+                                                                    <option value="B" ${option.getOption_Grade() eq
                                                                     'B' ? 'selected' : ''}>B</option>
-                                                                    <option value="C" ${optionGrade eq
+                                                                    <option value="C" ${option.getOption_Grade() eq
                                                                     'C' ? 'selected' : ''}>C</option>
-                                                                    <option value="D" ${optionGrade eq
+                                                                    <option value="D" ${option.getOption_Grade() eq
                                                                     'D' ? 'selected' : ''}>D</option>
-                                                                    <option value="E" ${optionGrade eq
+                                                                    <option value="E" ${option.getOption_Grade() eq
                                                                     'E' ? 'selected' : ''}>E</option>
-                                                                    <option value="F" ${optionGrade eq
+                                                                    <option value="F" ${option.getOption_Grade() eq
                                                                     'F' ? 'selected' : ''}>F</option>
                                                                 </select>
                                                             </div>
@@ -295,6 +295,10 @@ pageEncoding="UTF-8"%>
                                                         <div class="btn_wrap">
                                                             <!-- 수정 폼 -->
 						                                    <input class="btn submitbtn" id="minibtn" type="submit" value="수정" id="minibtn">
+						                                    <input type="hidden" name="pId" value="${option.getProduct_ID()}">
+						                                    <input type="hidden" name="oId" value="${option.getOption_ID()}">
+						                                    
+						                                    
 						                                    <button class="btn submitbtn" id="minibtn" type="button" onclick="window.location.href='deleteOption.admin?oId=${option.getOption_ID()}&pId=${option.getProduct_ID()}';" >삭제</button>
                                                         </div>
                                                         </td>

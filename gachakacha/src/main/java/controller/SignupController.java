@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -32,38 +33,34 @@ public class SignupController extends HttpServlet {
 			throws ServletException, IOException {
 
 		User user = new User();
-
-		String email = request.getParameter("email");
-		String name = request.getParameter("name");
-		String password = request.getParameter("password");
 		
-		String phone_1 = request.getParameter("phone_1");
-		String phone_2 = request.getParameter("phone_2");
-		String phone_3 = request.getParameter("phone_3");
-		String phone = phone_1+"-"+phone_2+"-"+phone_3;
+		user.setEmail(request.getParameter("email"));
+		user.setName(request.getParameter("name"));
+		user.setPassword(request.getParameter("password"));
 		
-		String gender = request.getParameter("gender");
-		
-		String year = request.getParameter("year");
-		String month = request.getParameter("month");
-		String date = request.getParameter("date");
-		String birth = year+"-"+month+"-"+date;
-		
-		String address1 = request.getParameter("address");
-		String address2 = request.getParameter("address");
-		String address = address1 +" "+address2;
-		
-		
-		user.setEmail(email);
-		user.setName(name);
-		user.setPassword(password);
+		String phone = request.getParameter("phone_1")+"-"+
+					   request.getParameter("phone_2")+"-"+
+					   request.getParameter("phone_3");
 		user.setPhone(phone);
-		user.setGender(gender);
+		
+		user.setGender(request.getParameter("gender"));
+		
+		String birth = request.getParameter("year")+"-"+
+					   request.getParameter("month")+"-"+
+					   request.getParameter("date");
 		user.setBirth(birth);
+		
+		String address = request.getParameter("address1")+" "+
+						 request.getParameter("address2");
 		user.setAddress(address);
+		
 		uDao.insert(user);
 		
-		 response.sendRedirect("index.jsp");
+		
+        request.setAttribute("errorMessage", "회원가입 성공");
+        // 로그인 페이지로 포워딩
+        RequestDispatcher dispatcher = request.getRequestDispatcher("loginView.do");
+        dispatcher.forward(request, response);
 	}
 
 }

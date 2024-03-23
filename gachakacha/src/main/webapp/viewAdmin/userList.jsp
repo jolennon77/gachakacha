@@ -109,7 +109,7 @@
                                                     <td>${u.getBirth()}</td>
 													<td>${u.getsingupDate()}</td>
 													<td>${u.getAut()}</td>
-													<td><button class="btn submitbtn" id="minibtn" type="button" onclick="window.location.href='#';">작성글</button></td>
+													<td><button class="btn submitbtn listbtn" id="minibtn" type="button" onclick="window.location.href='#';">작성글</button></td>
 												</tr>
 											</c:forEach>
 										</tbody>

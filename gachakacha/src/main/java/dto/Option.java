@@ -7,6 +7,16 @@ public class Option {
 	private String option_Grade;
 	private int option_Qty;
 	private String option_Img;
+	private int order_Qty;
+	
+	
+	public int getOrder_Qty() {
+		return order_Qty;
+	}
+
+	public void setOrder_Qty(int order_Qty) {
+		this.order_Qty = order_Qty;
+	}
 
 	public int getOption_ID() {
 		return option_ID;

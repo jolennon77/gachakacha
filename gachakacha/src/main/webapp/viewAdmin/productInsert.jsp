@@ -144,11 +144,10 @@
 												</tbody>
 											</table>
 										</div>
-										<div>
-											<input class="btn submitbtn" type="submit" value="등록">
+										<div class="basic_submit_zone" >
+											<input class="btn submitbtn updatebtn" type="submit" value="등록">
 										</div>
 										
-										<br>
 										<br>
 
 										<div class="option input__block">

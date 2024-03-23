@@ -105,8 +105,6 @@ public class UserDAO {
 	public List<User> getAll() {
 		List<User> members = new ArrayList<>();
 
-		
-
 		try {
 			con = MyDBConnection.getConnection();
 			pstmt = con.prepareStatement(GETALLUSER);
