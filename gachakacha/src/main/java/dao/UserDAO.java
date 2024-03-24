@@ -18,20 +18,20 @@ public class UserDAO {
 	private PreparedStatement pstmt = null;
 	private ResultSet rs = null;
 
-	private String GETUSER = "SELECT * FROM User WHERE User_Email = ?";
-	private String GETUSERBYUID = "SELECT * FROM User WHERE User_ID = ?";
-	private String ADDUSER = "INSERT INTO User(User_Email, User_Name, User_Pwd, User_Phone, User_Gender, User_Birth, User_Address) values(?, ?, ?, ?, ?, ?, ?)";
-	private String GETALLUSER = "SELECT * FROM User";
-	private String DELETEUSER = "DELETE FROM User WHERE User_ID = ?";
-	private String UPDATEUSER = "UPDATE User SET User_Email = ?, User_name = ?, User_Pwd = ?, User_Phone = ?, User_Gender = ?, User_Birth = ?, User_Address = ?, User_Aut = ? WHERE User_ID = ?";
+	private String GET_USER_BY_EMAIL = "SELECT * FROM User WHERE User_Email = ?";
+	private String GET_USER_BY_ID = "SELECT * FROM User WHERE User_ID = ?";
+	private String USER_INSERT = "INSERT INTO User(User_Email, User_Name, User_Pwd, User_Phone, User_Gender, User_Birth, User_Address) values(?, ?, ?, ?, ?, ?, ?)";
+	private String USER_LIST = "SELECT * FROM User";
+	private String USER_DELETE = "DELETE FROM User WHERE User_ID = ?";
+	private String USER_UPDATE = "UPDATE User SET User_Email = ?, User_name = ?, User_Pwd = ?, User_Phone = ?, User_Gender = ?, User_Birth = ?, User_Address = ?, User_Aut = ? WHERE User_ID = ?";
 	   
-	public User getUser(String email) {
+	public User getUserByEmail(String email) {
 		User user = null;
 
 		try {
 
 			con = MyDBConnection.getConnection();
-			pstmt = con.prepareStatement(GETUSER);
+			pstmt = con.prepareStatement(GET_USER_BY_EMAIL);
 			pstmt.setString(1, email);
 
 			rs = pstmt.executeQuery();
@@ -63,13 +63,13 @@ public class UserDAO {
 
 	}
 	
-	public User getUser(int uId) {
+	public User getUserById(int uId) {
 		User user = null;
 
 		try {
 
 			con = MyDBConnection.getConnection();
-			pstmt = con.prepareStatement(GETUSERBYUID);
+			pstmt = con.prepareStatement(GET_USER_BY_ID);
 			pstmt.setInt(1, uId);
 
 			rs = pstmt.executeQuery();
@@ -102,12 +102,12 @@ public class UserDAO {
 
 	}
 
-	public List<User> getAll() {
+	public List<User> userList() {
 		List<User> members = new ArrayList<>();
 
 		try {
 			con = MyDBConnection.getConnection();
-			pstmt = con.prepareStatement(GETALLUSER);
+			pstmt = con.prepareStatement(USER_LIST);
 			rs = pstmt.executeQuery();// select일 때 executeQuery 사용
 
 			// ResultSet에 있는 내용을 가져오기
@@ -136,12 +136,12 @@ public class UserDAO {
 		return members;
 	}// end of getAll
 
-	public void insert(User user) {
+	public void userInsert(User user) {
 		
 
 		try {
 			con = MyDBConnection.getConnection();
-			pstmt = con.prepareStatement(ADDUSER);
+			pstmt = con.prepareStatement(USER_INSERT);
 
 			pstmt.setString(1, user.getEmail());
 			pstmt.setString(2, user.getName());
@@ -161,11 +161,11 @@ public class UserDAO {
 	}// end of insert
 
 	
-	  public void delete(int userId) {
+	  public void userDelete(int userId) {
 	      
 	      try {
 	         con = MyDBConnection.getConnection();
-	         pstmt = con.prepareStatement(DELETEUSER);
+	         pstmt = con.prepareStatement(USER_DELETE);
 	         pstmt.setInt(1, userId);
 	         pstmt.executeUpdate();
 	         
@@ -179,10 +179,10 @@ public class UserDAO {
 	      }
 	   }
 
-		public void updateUserById(User user) {
+		public void userUpdate(User user) {
 		    try {
 		        con = MyDBConnection.getConnection();
-		        pstmt = con.prepareStatement(UPDATEUSER);
+		        pstmt = con.prepareStatement(USER_UPDATE);
 		        
 		        pstmt.setString(1, user.getEmail());
 		        pstmt.setString(2, user.getName());

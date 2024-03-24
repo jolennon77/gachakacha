@@ -31,11 +31,11 @@
 
 <body>
     <div class="container-fluid">
-        <form action="optinInsert.admin" method="post">
+        <form action=insert.option method="post">
             <div class="d-sm-flex align-items-center justify-content-between optionPopUp"> <!-- mb-4 삭제-->
                 <h1 class="h3 mb-0 text-gray-800">옵션 추가</h1>
                 <div class="optionAddBtn">
-                    <input class="btn submitbtn" type="submit" value="추가">
+                    <input class="btn submitbtn updatebtn" type="submit" value="추가">
                     <input type="hidden" name="pId" value="${product.getProduct_Id()}">
                     <!-- <input class="btn submitbtn" type="submit" value="추가"> -->
                 </div>

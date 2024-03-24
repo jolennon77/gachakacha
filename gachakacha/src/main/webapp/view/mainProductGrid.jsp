@@ -7,7 +7,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
  <link rel="stylesheet" href="./css/mainProductGrid.css">
  <link rel="stylesheet" type="text/css" href="./css/minProductGrid.css" />
-<!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
 
 <meta charset="UTF-8">
 <title>Insert title here</title>

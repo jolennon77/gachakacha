@@ -13,7 +13,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>상품 등록</title>
+<title>판매상품정보</title>
 
 <!-- Custom fonts for this template -->
 <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -40,7 +40,7 @@
 	<div id="wrapper">
 
 		<!-- Sidebar -->
-		<%@ include file="./layout/sidebar.jsp"%>
+		<%@ include file="/WEB-INF/adminView/layout/sidebar.jsp"%>
 		<!-- End of Sidebar -->
 
 		<!-- Content Wrapper -->
@@ -50,7 +50,7 @@
 			<div id="content">
 
 				<!-- Topbar -->
-				<%@ include file="./layout/topbar.jsp"%>
+				<%@ include file="/WEB-INF/adminView/layout/topbar.jsp"%>
 				<!-- End of Topbar -->
 
 				<!-- Begin Page Content -->
@@ -59,7 +59,7 @@
 					<!-- Page Heading -->
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">상품 등록</h1>
+						<h1 class="h3 mb-0 text-gray-800">판매 상품 정보</h1>
 						<a href="#"
 							class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
 							class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
@@ -74,9 +74,9 @@
 								<div class="table-responsive">
 									<!-- start of 부모 제품 등록 폼 -->
 
-									<form action="saleInsert.admin?" method="post">
-										<input type="hidden" name="pId"
-											value="${product.getProduct_Id()}">
+									<form action="update.sale" method="post">
+										<input type="hidden" name="sId" value="${sale.getSale_ID()}">
+										<input type="hidden" name="pId" value="${product.getProduct_Id()}">
 										<div class="mainProduct input__block">
 											<table
 												class="table table-bordered mainProductTable table-input"
@@ -151,11 +151,11 @@
 												</tbody>
 											</table>
 										</div>
-										<div class="basic_submit_zone">
-											<input class="btn submitbtn updatebtn" type="submit" value="등록">
-											<button class="btn submitbtn listbtn" type="button"
-												onclick="window.location.href='productList.admin';">목록</button>
-										</div>
+										 <div class="basic_submit_zone" >
+                                    <input class="btn submitbtn updatebtn" type="submit" value="수정">
+                                    <button class="btn submitbtn deletebtn" type="button" onclick="window.location.href='delete.sale?sId=${sale.getSale_ID()}';">삭제</button>
+                                    <button class="btn submitbtn listbtn" type="button" onclick="window.location.href='list.sale';">목록</button>
+                                    </div>
 									
 									<br> <br> <br>
 
@@ -175,13 +175,13 @@
 												<tr>
 													<th>정가</th>
 													<td><input class="text__block" type="text"
-														name="s_RegPrice" id="s_RegPrice"></td>
+														name="s_RegPrice" id="s_RegPrice" value="${sale.getRegular_Price()}"></td>
 													<th rowspan="3">판매페이지<br>내용
 													</th>
 													<th rowspan="3">
 														<div class="s_Cont">
 															<textarea class="text__block" rows="4" cols="50"
-																name="s_Description" id="s_Description"></textarea>
+																name="s_Description" id="s_Description">${sale.getSale_Description()}</textarea>
 															<!-- <input class="text__block" type="text" name="s_Cont" id="s_Cont"> -->
 														</div>
 													</th>
@@ -189,12 +189,12 @@
 												<tr>
 													<th>판매가</th>
 													<td><input class="text__block" type="text"
-														name="s_Price" id="s_Price"></td>
+														name="s_Price" id="s_Price" value="${sale.getSale_Price()}"></td>
 												</tr>
 												<tr>
 													<th>할인율(%)</th>
 													<td><input class="text__block" type="text"
-														name="s_DiscontRate" id="s_DiscontRate"></td>
+														name="s_DiscontRate" id="s_DiscontRate" value="${sale.getDiscount_Rate()*100}"></td>
 												</tr>
 											</tbody>
 										</table>
@@ -213,7 +213,7 @@
 				<!-- End of Main Content -->
 
 				<!-- Footer -->
-				<%@ include file="./layout/footer.jsp"%>
+				<%@ include file="/WEB-INF/adminView/layout/footer.jsp"%>
 				<!-- End of Footer -->
 			</div>
 		</div>
@@ -230,7 +230,7 @@
 
 	<!-- Logout Modal-->
 	   <script src="js/insertSale.js"></script>
-	<%@ include file="./layout/logoutModel.jsp"%>
+	<%@ include file="/WEB-INF/adminView/layout/logoutModel.jsp"%>
 
 	<!-- Bootstrap core JavaScript-->
 	<script src="vendor/jquery/jquery.min.js"></script>

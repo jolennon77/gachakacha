@@ -26,7 +26,7 @@ pageEncoding="UTF-8"%>
 	
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-    <script src="js/addOption.js"></script>
+    <script src="${pageContext.request.contextPath}/js/addOption2.js"></script>
 </head>
 
 <body id="page-top">
@@ -35,7 +35,7 @@ pageEncoding="UTF-8"%>
 <div id="wrapper">
 
     <!-- Sidebar -->
-    <%@ include file="./layout/sidebar.jsp"%>
+    <%@ include file="/WEB-INF/adminView/layout/sidebar.jsp"%>
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
@@ -45,7 +45,7 @@ pageEncoding="UTF-8"%>
         <div id="content">
 
             <!-- Topbar -->
-            <%@ include file="./layout/topbar.jsp"%>
+            <%@ include file="/WEB-INF/adminView/layout/topbar.jsp"%>
             <!-- End of Topbar -->
 
             <!-- Begin Page Content -->
@@ -67,7 +67,7 @@ pageEncoding="UTF-8"%>
                             <div class="table-responsive">
                                 <!-- start of 부모 제품 등록 폼 -->
 
-                                <form action="updateProduct.admin?" method="post">
+                                <form action="update.product" method="post">
                                     <input type="hidden" name="pId" value="${product.getProduct_Id()}">
                                     <div class="mainProduct input__block">
                                         <table class="table table-bordered mainProductTable table-input" id="dataTable"
@@ -214,21 +214,21 @@ pageEncoding="UTF-8"%>
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div class="product_insert_submit">
-                                    <input class="btn submitbtn" type="submit" value="수정">
-                                    <button class="btn submitbtn" type="button" onclick="window.location.href='deleteProduct.admin?pId=${product.getProduct_Id()}';">삭제</button>
-                                    <button class="btn submitbtn" type="button" onclick="window.location.href='productList.admin';">목록</button>
+                                    <div class="basic_submit_zone" >
+                                    <input class="btn submitbtn updatebtn" type="submit" value="수정">
+                                    <button class="btn submitbtn deletebtn" type="button" onclick="window.location.href='delete.product?pId=${product.getProduct_Id()}';">삭제</button>
+                                    <button class="btn submitbtn listbtn" type="button" onclick="window.location.href='list.product';">목록</button>
                                     </div>
                                 </form>
-                                <br> <br>
+                                <br>
 
 
                                 <!-- 옵션 정보를 표시하는 테이블 -->
                                 <div class="option_table">
                                     <div class="subtitlebox">
-                                        <div style="display: flex; justify-content: flex-start;">
-                                            <h1>옵션 정보</h1>
-                                            <button class="btn submitbtn" id="minibtnOp" type="button" onclick="openOptionPage(${product.getProduct_Id()});">옵션 추가</button>
+                                        <div class="basic_submit_zone" >
+                                          <h1 class="h3 mb-0 text-gray-800 subtitle" >옵션 정보</h1>
+                                            <button class="btn submitbtn updatebtn" id="minibtnOp" type="button" onclick="openOptionPage(${product.getProduct_Id()});">옵션 추가</button>
                                         </div>
                                     </div>
                                     <div class="option input__block">
@@ -254,7 +254,7 @@ pageEncoding="UTF-8"%>
                                             </tr>
                                             <tbody>
                                             <c:forEach items="${optionList}" var="option">
-                                                <form action="updateOption.admin" method="post" name="option_update_form">
+                                                <form action="update.option" method="post" name="option_update_form">
 
                                                     <tr>
                                                         <td>${option.getOption_ID()}</td>
@@ -292,14 +292,14 @@ pageEncoding="UTF-8"%>
                                                                    id="option_Qty" value="${option.getOption_Qty()}">
                                                         </td>
                                                         <td>
-                                                        <div class="btn_wrap">
+                                                      <div class="btn_wrap">
                                                             <!-- 수정 폼 -->
-						                                    <input class="btn submitbtn" id="minibtn" type="submit" value="수정" id="minibtn">
+						                                    <input class="btn submitbtn updatebtn" id="minibtn" type="submit" value="수정" style="background-color: #1c597f;">
 						                                    <input type="hidden" name="pId" value="${option.getProduct_ID()}">
 						                                    <input type="hidden" name="oId" value="${option.getOption_ID()}">
 						                                    
 						                                    
-						                                    <button class="btn submitbtn" id="minibtn" type="button" onclick="window.location.href='deleteOption.admin?oId=${option.getOption_ID()}&pId=${option.getProduct_ID()}';" >삭제</button>
+						                                    <button class="btn submitbtn deletebtn" id="minibtn" type="button" onclick="window.location.href='delete.option?oId=${option.getOption_ID()}&pId=${option.getProduct_ID()}';" >삭제</button>
                                                         </div>
                                                         </td>
                                                     </tr>
@@ -320,7 +320,7 @@ pageEncoding="UTF-8"%>
                 <!-- End of Main Content -->
 
                 <!-- Footer -->
-                <%@ include file="./layout/footer.jsp"%>
+                <%@ include file="/WEB-INF/adminView/layout/footer.jsp"%>
                 <!-- End of Footer -->
             </div>
         </div>
@@ -337,7 +337,7 @@ pageEncoding="UTF-8"%>
 </a>
 
 <!-- Logout Modal-->
-<%@ include file="./layout/logoutModel.jsp"%>
+<%@ include file="/WEB-INF/adminView/layout/logoutModel.jsp"%>
 
 <!-- Bootstrap core JavaScript-->
 <script src="vendor/jquery/jquery.min.js"></script>

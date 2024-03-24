@@ -44,7 +44,8 @@ function showWelcomeMessage(userName) {
             <form action="login" method="post">
                 <!-- email input -->
                 <div class="first-input input__block first-input__block">
-                    <input type="text" placeholder="이메일을 입력해주세요" class="input" id="email" name="email" /> <span id="emailMessage" class="error-message"></span>
+                    <input type="text" placeholder="이메일을 입력해주세요" class="input" id="email" name="email" /> 
+                    <span id="emailMessage" class="error-message"></span>
                     <!-- 중복 확인 결과를 표시할 곳 -->
                 </div>
                 <!-- password input -->

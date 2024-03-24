@@ -9,8 +9,16 @@ public class Sale {
 	private double discount_Rate;
 	private String sale_Description;
 	private String Product_Name;
-
 	private int totalQty;
+	private String Product_Img;
+
+	public String getProduct_Img() {
+		return Product_Img;
+	}
+	public void setProduct_Img(String product_Img) {
+		Product_Img = product_Img;
+	}
+
 	
 	
 	public int getSale_ID() {

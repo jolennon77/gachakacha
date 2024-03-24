@@ -35,12 +35,12 @@
 </head>
 
 <body id="page-top">
-
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
+        <%-- 세션이 있는 경우 유저 정보 수정 폼을 표시 --%>
 		<!-- Sidebar -->
-		<%@ include file="./layout/sidebar.jsp"%>
+		<%@ include file="/WEB-INF/adminView/layout/sidebar.jsp"%>
 		<!-- End of Sidebar -->
 
 		<!-- Content Wrapper -->
@@ -50,7 +50,7 @@
 			<div id="content">
 
 				<!-- Topbar -->
-				<%@ include file="./layout/topbar.jsp"%>
+				<%@ include file="/WEB-INF/adminView/layout/topbar.jsp"%>
 				<!-- End of Topbar -->
 
 				<!-- Begin Page Content -->
@@ -74,7 +74,7 @@
 								<div class="table-responsive">
 									<!-- start of 부모 제품 등록 폼 -->
 
-									<form action="updateUser.admin" method="post">
+									<form action="update.user" method="post">
 										<input type="hidden" name="pId"
 											value="${product.getProduct_Id()}">
 										<div class="mainProduct input__block">
@@ -163,9 +163,9 @@
 											<input class="btn submitbtn updatebtn" type="submit" value="수정">
 											<input type="hidden" name="uId" value="${user.getId()}">
 											<button class="btn submitbtn deletebtn" type="button"
-												onclick="window.location.href='userDelete.admin?uId=${user.getId()}';">삭제</button>
+												onclick="window.location.href='delete.user?uId=${user.getId()}';">삭제</button>
 											<button class="btn submitbtn listbtn" type="button"
-												onclick="window.location.href='userList.admin';">목록</button>
+												onclick="window.location.href='list.user';">목록</button>
 										</div>
 									</form>
 							</div>
@@ -177,7 +177,7 @@
 					<!-- End of Main Content -->
 
 					<!-- Footer -->
-					<%@ include file="./layout/footer.jsp"%>
+					<%@ include file="/WEB-INF/adminView/layout/footer.jsp"%>
 					<!-- End of Footer -->
 				</div>
 			</div>
@@ -187,14 +187,14 @@
 
 	</div>
 	<!-- End of Page Wrapper -->
-
+</div>
 	<!-- Scroll to Top Button-->
 	<a class="scroll-to-top rounded" href="#page-top"> <i
 		class="fas fa-angle-up"></i>
 	</a>
 
 	<!-- Logout Modal-->
-	<%@ include file="./layout/logoutModel.jsp"%>
+	<%@ include file="/WEB-INF/adminView/layout/logoutModel.jsp"%>
 
 	<!-- Bootstrap core JavaScript-->
 	<script src="vendor/jquery/jquery.min.js"></script>
@@ -212,7 +212,6 @@
 
 	<!-- Page level custom scripts -->
 	<script src="js/demo/datatables-demo.js"></script>
-
 </body>
 
 </html>

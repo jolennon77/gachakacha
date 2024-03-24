@@ -35,7 +35,7 @@
 	<div id="wrapper">
 
 		<!-- Sidebar -->
-		<%@ include file="./layout/sidebar.jsp"%>
+		<%@ include file="/WEB-INF/adminView/layout/sidebar.jsp"%>
 		<!-- End of Sidebar -->
 
 		<!-- Content Wrapper -->
@@ -45,7 +45,7 @@
 			<div id="content">
 
 				<!-- Topbar -->
-				<%@ include file="./layout/topbar.jsp"%>
+				<%@ include file="/WEB-INF/adminView/layout/topbar.jsp"%>
 				<!-- End of Topbar -->
 
 				<!-- Begin Page Content -->
@@ -68,7 +68,7 @@
 								<div class="table-responsive">
 								<!-- start of 부모 제품 등록 폼 -->
 									
-									<form action="productInsert.admin" method="post">
+									<form action="insert.product" method="post">
 										<div class="mainProduct input__block">
 											<table class="table table-bordered mainProductTable table-input" id="dataTable" width="100%" cellspacing="0">
 												<colgroup>
@@ -233,7 +233,7 @@
 					<!-- End of Main Content -->
 
 					<!-- Footer -->
-					<%@ include file="./layout/footer.jsp"%>
+					<%@ include file="/WEB-INF/adminView/layout/footer.jsp"%>
 					<!-- End of Footer -->
 				</div>
 			</div>
@@ -250,7 +250,7 @@
 	</a>
 
 	<!-- Logout Modal-->
-	<%@ include file="./layout/logoutModel.jsp"%>
+	<%@ include file="/WEB-INF/adminView/layout/logoutModel.jsp"%>
 
 	<!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>

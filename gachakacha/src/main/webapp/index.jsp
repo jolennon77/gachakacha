@@ -243,7 +243,7 @@ body {
             <c:when test="${sessionScope.user.aut == 'admin'}">
                 <li><a href="index.jsp">메인페이지</a></li>
                 <li><a href="infoBord.do">공지사항</a></li>
-                <li><a href="adminPage.admin">관리자 페이지</a></li>
+                <li><a href="adminPage.do">관리자 페이지</a></li>
                 <li><a href="logout.do">로그아웃</a></li>
             </c:when>
             <c:otherwise>

@@ -18,7 +18,7 @@ function deleteOptionTable(button) {
 }
 
 function openOptionPage(productId) {
-        var url = "optionInserForm.admin?pId=" + productId;
+        var url = "insertForm.option?pId=" + productId;
         var optionWindow = window.open(url, "_blank", "width=1000,height=400");
         optionWindow.focus();
     }

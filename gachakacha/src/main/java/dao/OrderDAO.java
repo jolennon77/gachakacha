@@ -9,6 +9,7 @@ import java.util.List;
 
 import dbconnection.MyDBConnection;
 import dto.Orders;
+import dto.Sale;
 
 public class OrderDAO {
 
@@ -16,16 +17,19 @@ public class OrderDAO {
 	private PreparedStatement pstmt = null;
 	private ResultSet rs =null;
 
-	private String ORDERLIST = "SELECT * FROM Orders";
-	private String ORDERDELETE = "DELETE FROM Orders WHERE Orders_ID = ?";
-	private String GETORDERSBYID = "SELECT * FROM Orders WHERE Orders_ID = ?";
-
+	private String ORDER_LIST = "SELECT * FROM Orders";
+	private String ORDER_DELETE = "DELETE FROM Orders WHERE Orders_ID = ?";
+	private String GET_ORDERS_BY_ID = "SELECT * FROM Orders WHERE Orders_ID = ?";
+	private String ORDER_UPDATE = "UPDATE Orders SET Orders_Status = ?, Ship_Number = ?, Orders_Memo = ? WHERE Orders_ID = ?";
+	
+	
+	
 	public List<Orders> getAll(){
 		List<Orders> orders = new ArrayList<Orders>();
 
 		try {
 			con = MyDBConnection.getConnection();
-			pstmt = con.prepareStatement(ORDERLIST);
+			pstmt = con.prepareStatement(ORDER_LIST);
 			rs = pstmt.executeQuery();
 
 			while(rs.next()) {
@@ -65,7 +69,7 @@ public class OrderDAO {
 	public void delete(int ordersId) {
 		try {
 			con = MyDBConnection.getConnection();
-			pstmt = con.prepareStatement(ORDERDELETE);
+			pstmt = con.prepareStatement(ORDER_DELETE);
 			pstmt.setInt(1, ordersId);
 			pstmt.executeUpdate();
 
@@ -86,7 +90,7 @@ public class OrderDAO {
 		Orders order = null;
 	    try {
 	        con = MyDBConnection.getConnection();
-	        pstmt = con.prepareStatement(GETORDERSBYID);
+	        pstmt = con.prepareStatement(GET_ORDERS_BY_ID);
 	        pstmt.setInt(1, ordersId);
 	        rs = pstmt.executeQuery();
 
@@ -109,6 +113,27 @@ public class OrderDAO {
 	    return order;
 	}
 
+	
+	
+
+	
+	public void updateOrderById(Orders order) {
+	    try {
+	        con = MyDBConnection.getConnection();
+	        pstmt = con.prepareStatement(ORDER_UPDATE);
+	        
+	        pstmt.setString(1, order.getOrders_Status());
+	        pstmt.setString(2, order.getShip_Number());
+	        pstmt.setString(3, order.getOrders_Memo());
+	        pstmt.setInt(4, order.getOrders_ID());
+	        
+	        pstmt.executeUpdate();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        MyDBConnection.close(rs, pstmt, con);
+	    }
+	}
 	
 	private String getProductImgByProductId(int productId) {
 	    String productImg = null;

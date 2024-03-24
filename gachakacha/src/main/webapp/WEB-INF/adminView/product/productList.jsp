@@ -1,5 +1,4 @@
-                                   
- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -13,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>유저 리스트</title>
+    <title>상품 목록</title>
 
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -27,7 +26,6 @@
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-
 </head>
 
 <body id="page-top">
@@ -36,7 +34,8 @@
 	<div id="wrapper">
 
 		<!-- Sidebar -->
-		<%@ include file="./layout/sidebar.jsp"%>
+		<%@ include file="/WEB-INF/adminView/layout/sidebar.jsp"%>
+
 		<!-- End of Sidebar -->
 
 		<!-- Content Wrapper -->
@@ -46,7 +45,7 @@
 			<div id="content">
 
 				<!-- Topbar -->
-				<%@ include file="./layout/topbar.jsp"%>
+				<%@ include file="/WEB-INF/adminView/layout/topbar.jsp"%>
 				<!-- End of Topbar -->
 
 				<!-- Begin Page Content -->
@@ -55,10 +54,10 @@
 					<!-- Page Heading -->
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">회원 목록</h1>
+						<h1 class="h3 mb-0 text-gray-800">상품 목록</h1>
 						<a href="#"
 							class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-							class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+							class="fas fa-download fa-sm text-white-50"></i>&nbsp;데이터베이스 내려받기</a>
 					</div>
 					<div class="container-fluid">
 						<div class="card shadow mb-4">
@@ -71,45 +70,51 @@
 									<table class="table table-bordered" id="dataTable" width="100%"
 										cellspacing="0">
 										<colgroup>
-											<col>
 											<col width="9%">
-											<col width="14%">
+											<col width="8%">
 											<col width="7%">
-											<col width="12%">
-											<col width="12%">
+											<col width="10%">
+											<col width="15%">
+											<col>
+											<col width="8%">
 											<col width="8%">
 											<col width="8%">
 										</colgroup>
 										<thead>
 											<tr>
-												<th>이메일</th>
-	                                            <th>이름</th>
-	                                            <th>전화번호</th>
-	                                            <th>성별</th>
-	                                            <th>생일</th>
-	                                            <th>가입일자</th>
-	                                            <th>권한</th>
-	                                            <th>작성글</th>
+												<th>제품ID</th>
+												<th>이미지</th>
+												<th>종류</th>
+												<th>카테고리</th>
+												<th>제품명</th>
+												<th>제품설명</th>
+												<th>입고가</th>
+												<th>판매</th>
+												<th>리뷰</th>
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach items="${userAll}" var="u">
+											<c:forEach items="${productList}" var="p">
 												<tr>
-													<td><a href="userDetail.admin?uId=${u.getId()}">${u.getEmail()}</a></td>
-                                                    <td><a href="userDetail.admin?uId=${u.getId()}">${u.getName()}</a></td>
-                                                    <td>${u.getPhone()}</td>
-                                                    <td>
-														<c:choose>
-														<c:when test="${u.getGender() eq 'M'}">남</c:when>
-														<c:when test="${u.getGender() eq 'F'}">여</c:when>
-														<c:otherwise></c:otherwise>
-														<%-- 아무것도 표시하지 않음 --%>
-														</c:choose>
+													<td>${p.getProduct_Id()}</td>
+													<td style="padding: 0;">
+														<div class="thumnail">
+															<img src="${p.getProduct_Img()}">
+														</div>
 													</td>
-                                                    <td>${u.getBirth()}</td>
-													<td>${u.getsingupDate()}</td>
-													<td>${u.getAut()}</td>
-													<td><button class="btn submitbtn listbtn" id="minibtn" type="button" onclick="window.location.href='#';">작성글</button></td>
+													<td><c:choose>
+												<c:when test="${p.getProduct_Type() eq 'G'}">가챠</c:when>
+												<c:when test="${p.getProduct_Type() eq 'K'}">쿠지</c:when>
+												<c:otherwise></c:otherwise>
+												<%-- 아무것도 표시하지 않음 --%>
+											</c:choose></td>
+													
+													<td>${p.getProduct_Cat()}</td>
+													<td><a href="detail.product?pId=${p.getProduct_Id()}">${p.getProduct_Name()}</a></td>
+													<td>${p.getProduct_Con()}</td>
+													<td>${p.getProduct_Price()}</td>
+													<td><button class="btn submitbtn updatebtn" id="minibtn" type="button" onclick="window.location.href='insertForm.sale?pId=${p.getProduct_Id()}';">판매등록</button></td>
+													<td><button class="btn submitbtn listbtn" id="minibtn" type="button" onclick="window.location.href='saleInsertForm.admin?pId=${p.getProduct_Id()}';">리뷰목록</button></td>
 												</tr>
 											</c:forEach>
 										</tbody>
@@ -124,7 +129,7 @@
 					<!-- End of Main Content -->
 
 					<!-- Footer -->
-					<%@ include file="./layout/footer.jsp"%>
+					<%@ include file="/WEB-INF/adminView/layout/footer.jsp"%>
 					<!-- End of Footer -->
 				</div>
 			</div>
@@ -141,7 +146,7 @@
 	</a>
 
 	<!-- Logout Modal-->
-	<%@ include file="./layout/logoutModel.jsp"%>
+	<%@ include file="/WEB-INF/adminView/layout/logoutModel.jsp"%>
 
 	<!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
@@ -163,3 +168,5 @@
 </body>
 
 </html>
+
+

@@ -38,7 +38,7 @@
 	<div id="wrapper">
 
 		<!-- Sidebar -->
-		<%@ include file="./layout/sidebar.jsp"%>
+		<%@ include file="/WEB-INF/adminView/layout/sidebar.jsp"%>
 
 		<!-- End of Sidebar -->
 
@@ -49,7 +49,7 @@
 			<div id="content">
 
 				<!-- Topbar -->
-				<%@ include file="./layout/topbar.jsp"%>
+				<%@ include file="/WEB-INF/adminView/layout/topbar.jsp"%>
 				<!-- End of Topbar -->
 
 				<!-- Begin Page Content -->
@@ -90,7 +90,7 @@
 										<c:forEach items="${orderAll}" var="order">
 											<tr>
 												<td><a
-													href="orderDetail.admin?odId=${order.getOrders_ID()}">${order.getOrders_ID()}</a></td>
+													href="detail.order?odId=${order.getOrders_ID()}">${order.getOrders_ID()}</a></td>
 												<td style="padding: 0;">
 													<div class="thumnail">
 														<img src="${order.getProduct_Img()}">
@@ -117,7 +117,7 @@
 					<!-- End of Main Content -->
 
 					<!-- Footer -->
-					<%@ include file="./layout/footer.jsp"%>
+					<%@ include file="/WEB-INF/adminView/layout/footer.jsp"%>
 					<!-- End of Footer -->
 				</div>
 			</div>
@@ -134,7 +134,7 @@
 	</a>
 
 	<!-- Logout Modal-->
-	<%@ include file="./layout/logoutModel.jsp"%>
+	<%@ include file="/WEB-INF/adminView/layout/logoutModel.jsp"%>
 
 	<!-- Bootstrap core JavaScript-->
 	<script src="vendor/jquery/jquery.min.js"></script>

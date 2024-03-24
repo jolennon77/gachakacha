@@ -9,6 +9,7 @@ import java.util.List;
 
 import dbconnection.MyDBConnection;
 import dto.Sale;
+import dto.User;
 
 public class SaleDAO {
 	private Connection con = null;
@@ -16,13 +17,16 @@ public class SaleDAO {
 	private ResultSet rs = null;
 
 	private String GETALL = "SELECT * FROM sale";
-	private String ADDSALE = "INSERT INTO Sale(Product_ID, Regular_Price, Sale_Price, Discount_Rate, Sale_Description) values(?, ?, ?, ?, ?)";
+	private String SALE_INSERT = "INSERT INTO Sale(Product_ID, Regular_Price, Sale_Price, Discount_Rate, Sale_Description) values(?, ?, ?, ?, ?)";
 	private String SALE_GET = "SELECT * FROM Sale WHERE Sale_ID=?";
-
+	private String SALE_DELETE = "DELETE FROM Sale WHERE Sale_ID = ?";
+	private String SALE_UPDATE = "UPDATE Sale SET Regular_Price = ?, Sale_Price = ?, Discount_Rate = ?, Sale_Description = ? WHERE Sale_ID = ?";
+	
 	public void saleInsert(Sale sale) {
 		try {
 			con = MyDBConnection.getConnection();
-			pstmt = con.prepareStatement(ADDSALE);
+			pstmt = con.prepareStatement(SALE_INSERT);
+			
 			pstmt.setInt(1, sale.getProduct_ID());
 			pstmt.setInt(2, sale.getRegular_Price());
 			pstmt.setInt(3, sale.getSale_Price());
@@ -91,6 +95,9 @@ public class SaleDAO {
 	            int optionQty = getTotalQtyByProductId(productId);
 	            sale.setTotalQty(optionQty);
 	            
+	            String productImg = getProductImgByProductId(productId);
+	            sale.setProduct_Img(productImg);
+	            
 	            saleList.add(sale);
 	        }
 
@@ -102,6 +109,60 @@ public class SaleDAO {
 	    }
 	    return saleList;
 	}
+	
+	public void delete(int saleId) {
+		try {
+			con = MyDBConnection.getConnection();
+			pstmt = con.prepareStatement(SALE_DELETE);
+			pstmt.setInt(1, saleId);
+			pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+			System.out.println("예외");
+
+		}finally {
+			MyDBConnection.close(rs, pstmt, con);
+		}
+	}
+	
+	
+	
+	
+	
+	public void updateSaleById(Sale sale) {
+	    try {
+	        con = MyDBConnection.getConnection();
+	        pstmt = con.prepareStatement(SALE_UPDATE);
+	        
+	        pstmt.setInt(1, sale.getRegular_Price());
+	        pstmt.setInt(2, sale.getSale_Price());
+	        pstmt.setDouble(3, sale.getDiscount_Rate());
+	        pstmt.setString(4, sale.getSale_Description());
+	        pstmt.setInt(5, sale.getSale_ID());
+	        
+	        pstmt.executeUpdate();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        MyDBConnection.close(rs, pstmt, con);
+	    }
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	private String getProductNameByProductId(int productId) {
 	    String productName = null;
@@ -124,6 +185,30 @@ public class SaleDAO {
 	    
 	    return productName;
 	}
+	
+	
+	private String getProductImgByProductId(int productId) {
+	    String productImg = null;
+	    
+	    try {
+	        Connection con = MyDBConnection.getConnection(); // 지역 변수로 변경
+	        PreparedStatement pstmt = con.prepareStatement("SELECT Product_Img FROM Product WHERE Product_ID = ?");
+	        pstmt.setInt(1, productId);
+	        ResultSet rs = pstmt.executeQuery();
+	        
+	        if (rs.next()) {
+	        	productImg = rs.getString("Product_Img");
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        // ResultSet 닫기
+	        // MyDBConnection.close(rs, pstmt, con); // 필드에서 사용하지 않으므로 이 부분은 제거합니다.
+	    }
+	    
+	    return productImg;
+	}
+
 
 	private int getTotalQtyByProductId(int productId) {
 	    int totalQty = -1; // 기본적으로 -1로 설정

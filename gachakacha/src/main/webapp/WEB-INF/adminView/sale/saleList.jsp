@@ -35,7 +35,7 @@
 	<div id="wrapper">
 
 		<!-- Sidebar -->
-		<%@ include file="./layout/sidebar.jsp"%>
+		<%@ include file="/WEB-INF/adminView/layout/sidebar.jsp"%>
 		<!-- End of Sidebar -->
 
 		<!-- Content Wrapper -->
@@ -45,7 +45,7 @@
 			<div id="content">
 
 				<!-- Topbar -->
-				<%@ include file="./layout/topbar.jsp"%>
+				<%@ include file="/WEB-INF/adminView/layout/topbar.jsp"%>
 				<!-- End of Topbar -->
 
 				<!-- Begin Page Content -->
@@ -71,6 +71,7 @@
 										cellspacing="0">
 										<colgroup>
 											<col width="10%">
+											<col width="8%">
 											<col>
 											<col width="10%">
 											<col width="10%">
@@ -80,6 +81,7 @@
 										<thead>
 											<tr>
 												<th>판매ID</th>
+												<th>이미지</th>
 												<th>제품이름</th>
 												<th>정가</th>
 												<th>판매가</th>
@@ -91,10 +93,15 @@
 											<c:forEach items="${saleList}" var="s">
 												<tr>
 													<td>${s.getSale_ID()}</td>
-												<td><a href="saleDetail.admin?sId=${s.getSale_ID()}&pId=${s.getProduct_ID()}">${s.getProduct_Name()}</a></td>
+													<td style="padding: 0;">
+														<div class="thumnail">
+															<img src="${s.getProduct_Img()}">
+														</div>
+													</td>
+												<td><a href="detail.sale?sId=${s.getSale_ID()}&pId=${s.getProduct_ID()}">${s.getProduct_Name()}</a></td>
 													<td>${s.getRegular_Price()}</td>
 													<td>${s.getSale_Price()}</td>
-													<td>${s.getDiscount_Rate()}</td>
+													<td>${s.getDiscount_Rate()*100}</td>
 													<td>${s.getTotalQty()}</td>
 												</tr>
 											</c:forEach>
@@ -110,7 +117,7 @@
 					<!-- End of Main Content -->
 
 					<!-- Footer -->
-					<%@ include file="./layout/footer.jsp"%>
+					<%@ include file="/WEB-INF/adminView/layout/footer.jsp"%>
 					<!-- End of Footer -->
 				</div>
 			</div>
@@ -127,7 +134,7 @@
 	</a>
 
 	<!-- Logout Modal-->
-	<%@ include file="./layout/logoutModel.jsp"%>
+	<%@ include file="/WEB-INF/adminView/layout/logoutModel.jsp"%>
 
 	<!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
