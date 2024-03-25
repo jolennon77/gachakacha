@@ -97,7 +97,7 @@
 								<div class="table-responsive">
 									<!-- start of 부모 제품 등록 폼 -->
 
-									<form action="insert.sale" method="post">
+									<form class="saleinsertForm" action="insert.sale" method="post">
 										<input type="hidden" name="pId"
 											value="${product.getProduct_Id()}">
 										<div class="mainProduct input__block">
@@ -174,59 +174,57 @@
 												</tbody>
 											</table>
 										</div>
-										
-									<br>
+
+										<br>
 
 
-									<!-- 판매등록 폼 -->
-									<div class="mainProduct input__block">
-										<table
-											class="table table-bordered mainProductTable table-input"
-											id="dataTable" width="100%" cellspacing="0">
-											<colgroup>
-												<col width="10%">
-												<col width="10%">
-												<col width="14%">
-												<col>
-											</colgroup>
-											<tbody>
-												<tr>
-													<th>정가</th>
-													<td><input class="text__block" type="text"
-														name="s_RegPrice" id="s_RegPrice"></td>
-													<th rowspan="3">판매페이지<br>내용
-													</th>
-													<th rowspan="3">
-														<div class="s_Cont">
-															
-															<textarea rows="4" id="summernote" name="s_Description"></textarea>
-														<!-- 	<textarea class="text__block" rows="4" cols="50"
-																name="s_Description" id="s_Description"></textarea> -->
-															<!-- <input class="text__block" type="text" name="s_Cont" id="s_Cont"> -->
-														</div>
-													</th>
-												</tr>
-												<tr>
-													<th>판매가</th>
-													<td><input class="text__block" type="text"
-														name="s_Price" id="s_Price"></td>
-												</tr>
-												<tr>
-													<th>할인율(%)</th>
-													<td><input class="text__block" type="text"
-														name="s_DiscontRate" id="s_DiscontRate"></td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-									<div class="basic_submit_zone">
-											<input id="submitButton" class="btn submitbtn updatebtn" type="submit" value="등록">
+										<!-- 판매등록 폼 -->
+										<div class="mainProduct input__block">
+											<table
+												class="table table-bordered mainProductTable table-input"
+												id="dataTable" width="100%" cellspacing="0">
+												<colgroup>
+													<col width="10%">
+													<col width="10%">
+													<col width="14%">
+													<col>
+												</colgroup>
+												<tbody>
+													<tr>
+														<th>정가</th>
+														<td><input class="text__block" type="text"
+															name="s_RegPrice" id="s_RegPrice"></td>
+														<th rowspan="3">판매페이지<br>내용
+														</th>
+														<th rowspan="3">
+															<div class="s_Cont">
+
+																<textarea rows="4" id="summernote" name="s_Description"></textarea>
+															</div>
+														</th>
+													</tr>
+													<tr>
+														<th>판매가</th>
+														<td><input class="text__block" type="text"
+															name="s_Price" id="s_Price"></td>
+													</tr>
+													<tr>
+														<th>할인율(%)</th>
+														<td><input class="text__block" type="text"
+															name="s_DiscontRate" id="s_DiscontRate"></td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+										<div class="basic_submit_zone">
+											<input class="btn submitbtn updatebtn" type="submit"
+												value="등록">
 											<button class="btn submitbtn listbtn" type="button"
 												onclick="window.location.href='list.product';">목록</button>
 										</div>
-									
+
 									</form>
-								
+
 								</div>
 								<!-- /.container-fluid -->
 
@@ -255,7 +253,7 @@
 	</a>
 
 	<!-- Logout Modal-->
-	   <script src="js/insertSale.js"></script>
+
 	<%@ include file="/WEB-INF/adminView/layout/logoutModel.jsp"%>
 	<script>
 		$('#summernote').summernote({
@@ -280,23 +278,9 @@
 
 	<!-- Page level custom scripts -->
 	<script src="js/demo/datatables-demo.js"></script>
-	
-	
-	
-<script>
 
-    $(document).ready(function() {
-        // 등록 버튼 클릭 시
-        $("#submitButton").click(function() {
-            // 확인 대화상자 표시
-            if (confirm("등록하시겠습니까?")) {
-                // 확인 버튼 클릭 시 제품 등록 폼 제출
-                $("#productForm").submit();
-            }
-        });
-    });
-</script>
-	
+	<script src="js/insertSale1.js"></script>
+
 
 </body>
 

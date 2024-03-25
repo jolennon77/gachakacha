@@ -181,8 +181,7 @@
                                                             <div class="basic_submit_zone">
                                                                 <input class="btn submitbtn updatebtn" type="submit"
                                                                     value="수정">
-                                                                <button class="btn submitbtn deletebtn" type="button"
-                                                                    onclick="window.location.href='orderDelete.admin?odId=${order.getOrders_ID()}';">삭제</button>
+                                                                <button class="btn submitbtn deletebtn" type="button" onclick="confirmDeleteOrder(${order.getOrders_ID()});">삭제</button>
                                                                 <button class="btn submitbtn listbtn" type="button"
                                                                     onclick="window.location.href='list.order';">목록</button>
                                                             </div>
@@ -225,16 +224,16 @@
                                                                                 <td><input class="text__block"
                                                                                         type="text" name="option_name"
                                                                                         id="option_name"
-                                                                                        value="${option.getOption_Name()}">
+                                                                                        value="${option.getOption_Name()}" readonly="readonly">
                                                                                 </td>
                                                                                 <td><input class="text__block"
                                                                                         type="text" name="option_Img"
                                                                                         id="option_Img"
-                                                                                        value="${option.getOption_Grade()}">
+                                                                                        value="${option.getOption_Grade()}" readonly="readonly">
                                                                                 <td><input class="text__block"
                                                                                         type="text" name="option_Qty"
                                                                                         id="option_Qty"
-                                                                                        value="${option.getOrder_Qty()}">
+                                                                                        value="${option.getOrder_Qty()}" readonly="readonly">
                                                                                 </td>
                                                                             </tr>
                                                                         </c:forEach>
@@ -285,6 +284,7 @@
 
                 <!-- Page level custom scripts -->
                 <script src="js/demo/datatables-demo.js"></script>
+                <script src="js/order.js"></script>
 
         </body>
 

@@ -97,7 +97,7 @@
 								<div class="table-responsive">
 									<!-- start of 부모 제품 등록 폼 -->
 
-									<form action="update.sale" method="post">
+									<form class="saleinsertForm" action="update.sale" method="post">
 										<input type="hidden" name="sId" value="${sale.getSale_ID()}">
 										<input type="hidden" name="pId" value="${product.getProduct_Id()}">
 										<div class="mainProduct input__block">
@@ -214,14 +214,14 @@
 												<tr>
 													<th>할인율(%)</th>
 													<td><input class="text__block" type="text"
-														name="s_DiscontRate" id="s_DiscontRate" value="${sale.getDiscount_Rate()}%"></td>
+														name="s_DiscontRate" id="s_DiscontRate" value="${sale.getDiscount_Rate()}"></td>
 												</tr>
 											</tbody>
 										</table>
 									</div>
 										 <div class="basic_submit_zone" >
                                     <input class="btn submitbtn updatebtn" type="submit" value="수정">
-                                    <button id="submitButton" class="btn submitbtn deletebtn" type="button" onclick="window.location.href='delete.sale?sId=${sale.getSale_ID()}';">삭제</button>
+                                    <button class="btn submitbtn deletebtn" type="button" onclick="confirmDeleteSale(${sale.getSale_ID()});">삭제</button>
                                     <button class="btn submitbtn listbtn" type="button" onclick="window.location.href='list.sale';">목록</button>
                                     </div>
 									</form>
@@ -254,7 +254,6 @@
 	</a>
 
 	<!-- Logout Modal-->
-	   <script src="js/insertSale.js"></script>
 	<%@ include file="/WEB-INF/adminView/layout/logoutModel.jsp"%>
 <script>
 		$('#summernote').summernote({
@@ -280,20 +279,11 @@
 	<!-- Page level custom scripts -->
 	<script src="js/demo/datatables-demo.js"></script>
 	
+	<script src="js/insertSale1.js"></script>
 	
 		
 <script>
 
-    $(document).ready(function() {
-        // 삭제 버튼 클릭 시
-        $("#submitButton").click(function() {
-            // 확인 대화상자 표시
-            if (confirm("삭제하시겠습니까?")) {
-                // 확인 버튼 클릭 시 제품 등록 폼 제출
-                $("#productForm").submit();
-            }
-        });
-    });
 </script>
 
 </body>
