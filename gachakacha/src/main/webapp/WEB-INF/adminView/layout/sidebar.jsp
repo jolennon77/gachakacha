@@ -63,10 +63,10 @@
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded" id="submenu">
                         <h6 class="collapse-header">게 시 판 관 리</h6>
-                        <a class="collapse-item" href="insertForm.board">공 지 사 항</a>
-                        <a class="collapse-item" href="#.html">Q & A</a>
-                        <a class="collapse-item" href="#.html">리 뷰</a>
-                        <a class="collapse-item" href="#.html">중 고 장 터</a>
+                        <a class="collapse-item" href="list.board?bcat=info">공 지 사 항</a>
+                        <a class="collapse-item" href="list.board?bcat=QnA">Q & A</a>
+                        <a class="collapse-item" href="list.board?bcat=reivew">리 뷰</a>
+                        <a class="collapse-item" href="list.board?bcat=secondHand">중 고 장 터</a>
                     </div>
                 </div>
             </li>

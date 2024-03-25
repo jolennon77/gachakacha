@@ -6,7 +6,7 @@ public class Sale {
 	private int product_ID;
 	private int regular_Price;
 	private int sale_Price;
-	private double discount_Rate;
+	private int discount_Rate;
 	private String sale_Description;
 	private String Product_Name;
 	private int totalQty;
@@ -48,7 +48,7 @@ public class Sale {
 	public double getDiscount_Rate() {
 		return discount_Rate;
 	}
-	public void setDiscount_Rate(double discount_Rate) {
+	public void setDiscount_Rate(int discount_Rate) {
 		this.discount_Rate = discount_Rate;
 	}
 	public String getSale_Description() {

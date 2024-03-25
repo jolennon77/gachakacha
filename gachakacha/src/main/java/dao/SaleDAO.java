@@ -54,7 +54,7 @@ public class SaleDAO {
 				sale.setProduct_ID(rs.getInt("Product_ID"));
 				sale.setRegular_Price(rs.getInt("Regular_Price"));
 				sale.setSale_Price(rs.getInt("Sale_Price"));
-				sale.setDiscount_Rate(rs.getDouble("Discount_Rate"));
+				sale.setDiscount_Rate(rs.getInt("Discount_Rate"));
 				sale.setSale_Description(rs.getString("sale_Description"));
 			}
 		} catch (SQLException e) {
@@ -88,7 +88,7 @@ public class SaleDAO {
 //	            
 	            sale.setRegular_Price(rs.getInt("Regular_Price"));
 	            sale.setSale_Price(rs.getInt("Sale_Price"));
-	            sale.setDiscount_Rate(rs.getDouble("Discount_Rate"));
+	            sale.setDiscount_Rate(rs.getInt("Discount_Rate"));
 	            sale.setSale_Description(rs.getString("Sale_Description"));
 	            
 	            // 상품 아이디별 옵션 수량을 가져와 Sale 객체에 추가

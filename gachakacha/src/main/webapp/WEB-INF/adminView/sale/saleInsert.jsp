@@ -16,21 +16,44 @@
 <title>상품 등록</title>
 
 <!-- Custom fonts for this template -->
-<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
-	type="text/css">
+<link
+	href="${pageContext.request.contextPath}/vendor/fontawesome-free/css/all.min.css"
+	rel="stylesheet" type="text/css">
 <link
 	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
 	rel="stylesheet">
 
 <!-- Custom styles for this template -->
-<link href="css/sb-admin-2.min.css" rel="stylesheet">
+<link href="/css/sb-admin-2.min.css" rel="stylesheet">
 
 <!-- Custom styles for this page -->
-<link href="vendor/datatables/dataTables.bootstrap4.min.css"
+<link
+	href="${pageContext.request.contextPath}/vendor/datatables/dataTables.bootstrap4.min.css"
 	rel="stylesheet">
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
 	crossorigin="anonymous"></script>
-<script src="js/addOption.js"></script>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+	integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+	crossorigin="anonymous"></script>
+<!-- <link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous"> -->
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+	integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+	crossorigin="anonymous"></script>
+<link
+	href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css"
+	rel="stylesheet">
+<script
+	src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+
 
 </head>
 
@@ -151,13 +174,8 @@
 												</tbody>
 											</table>
 										</div>
-										<div class="basic_submit_zone">
-											<input class="btn submitbtn updatebtn" type="submit" value="등록">
-											<button class="btn submitbtn listbtn" type="button"
-												onclick="window.location.href='list.product';">목록</button>
-										</div>
-									
-									<br> <br> <br>
+										
+									<br>
 
 
 									<!-- 판매등록 폼 -->
@@ -180,8 +198,10 @@
 													</th>
 													<th rowspan="3">
 														<div class="s_Cont">
-															<textarea class="text__block" rows="4" cols="50"
-																name="s_Description" id="s_Description"></textarea>
+															
+															<textarea rows="4" id="summernote" name="s_Description"></textarea>
+														<!-- 	<textarea class="text__block" rows="4" cols="50"
+																name="s_Description" id="s_Description"></textarea> -->
 															<!-- <input class="text__block" type="text" name="s_Cont" id="s_Cont"> -->
 														</div>
 													</th>
@@ -199,6 +219,12 @@
 											</tbody>
 										</table>
 									</div>
+									<div class="basic_submit_zone">
+											<input class="btn submitbtn updatebtn" type="submit" value="등록">
+											<button class="btn submitbtn listbtn" type="button"
+												onclick="window.location.href='list.product';">목록</button>
+										</div>
+									
 									</form>
 								
 								</div>
@@ -231,7 +257,13 @@
 	<!-- Logout Modal-->
 	   <script src="js/insertSale.js"></script>
 	<%@ include file="/WEB-INF/adminView/layout/logoutModel.jsp"%>
-
+	<script>
+		$('#summernote').summernote({
+			placeholder : '판매페이지 내용 입력',
+			tabsize : 2,
+			height : 100
+		});
+	</script>
 	<!-- Bootstrap core JavaScript-->
 	<script src="vendor/jquery/jquery.min.js"></script>
 	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

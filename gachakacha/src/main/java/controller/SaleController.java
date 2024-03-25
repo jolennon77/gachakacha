@@ -102,7 +102,7 @@ public class SaleController extends HttpServlet {
 		Sale sale = new Sale();
 		sale.setRegular_Price(Integer.parseInt(request.getParameter("s_RegPrice")));
 		sale.setSale_Price(Integer.parseInt(request.getParameter("s_Price")));
-		sale.setDiscount_Rate(Double.parseDouble(request.getParameter("s_DiscontRate")) / 100.0);
+		sale.setDiscount_Rate(Integer.parseInt(request.getParameter("s_DiscontRate")));
 		sale.setSale_Description(request.getParameter("s_Description"));
 		sale.setSale_ID(saleId);
 
@@ -131,7 +131,7 @@ public class SaleController extends HttpServlet {
 		sale.setProduct_ID(pId);
 		sale.setRegular_Price(Integer.parseInt(request.getParameter("s_RegPrice")));
 		sale.setSale_Price(Integer.parseInt(request.getParameter("s_Price")));
-		sale.setDiscount_Rate(Double.parseDouble(request.getParameter("s_DiscontRate")) / 100.0);
+		sale.setDiscount_Rate(Integer.parseInt(request.getParameter("s_DiscontRate")));
 		sale.setSale_Description(request.getParameter("s_Description"));
 		saleDAO.saleInsert(sale);
 

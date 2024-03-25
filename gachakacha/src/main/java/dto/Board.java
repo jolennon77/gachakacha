@@ -14,10 +14,16 @@ public class Board {
     private Timestamp Board_CreateDate;
     private String Board_Pwd;
     private String Board_Content;
+    private String User_Name;
     
     
-    
-    public int getBoard_ID() {
+    public void setUser_Name(String user_Name) {
+		User_Name = user_Name;
+	}
+	public String getUser_Name() {
+		return User_Name;
+	}
+	public int getBoard_ID() {
 		return Board_ID;
 	}
 	public void setBoard_ID(int board_ID) {

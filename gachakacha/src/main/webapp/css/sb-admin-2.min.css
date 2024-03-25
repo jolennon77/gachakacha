@@ -13018,7 +13018,7 @@ border: 1px solid #e3e6f0;
 }
 .mainProductTable,
 .optionTable{
-	width: 80%;
+	/* width: 80%; */
 }
 
 #optionAddBtn{

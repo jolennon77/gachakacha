@@ -81,7 +81,7 @@
 					<!-- Page Heading -->
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">${boardcat1}테스트</h1>
+						<h1 class="h3 mb-0 text-gray-800">${board.getBoard_Cat1()}테스트</h1>
 						<a href="#"
 							class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
 							class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
@@ -96,10 +96,10 @@
 								<div class="table-responsive">
 
 
-									<form id="boardForm" action="update.board" method="post">
+									<form id="boardForm" action="insert.board" method="post">
 										<input type="hidden" name="uId" value="${user.getId()}">
 										<input type="hidden" name="bcat1" value="${boardcat1}">
-										<input type="hidden" name="pId" value="${boardcat1}">
+										<input type="hidden" name="pId" value="${board.getBoard_Cat1()}">
 										<table
 											class="table table-bordered mainProductTable table-input"
 											id="secondhandTable" width="100%" cellspacing="0" style="width: 33.4%">
@@ -141,11 +141,9 @@
 
 													<tr>
 														<th>작성자</th>
-														<td><input class="text__block" type="text"
-															name="User_ID" id="User_ID" placeholder=""
-															value="${user.getName()}" readonly="readonly"></td>
+														<td><input class="text__block" type="text" value="${user.getName()}" readonly="readonly"></td>
 														<th>작성일</th>
-														<td><input class="text__block" type="text" placeholder="" readonly="readonly"></td>
+														<td><input class="text__block" type="text" value="${board.getBoard_CreateDate()}" readonly="readonly"></td>
 														<th>비밀번호</th>
 														<td><input class="text__block" type="text"
 															name="Board_Pwd" id="Board_Pwd" placeholder="" required></td>
@@ -154,7 +152,7 @@
 														<th>제목</th>
 														<td colspan="6"><input class="text__block"
 															type="text" name="Board_Title" id="Board_Title"
-															placeholder=""></td>
+															value="${board.getBoard_Title()}"></td>
 													</tr>
 												</tbody>
 											</table>
@@ -162,7 +160,7 @@
 										<!-- 	<div id="summernote">
 											<textarea id="Board_Content" name="Board_Content" style="display: none;"></textarea>
 										</div> -->
-										<textarea rows="5" id="summernote" name="Board_Content"></textarea>
+										<textarea rows="5" id="summernote" name="Board_Content">${board.getBoard_Content()}</textarea>
 										<br>
 										<div class="basic	_submit_zone">
 											<input class="btn submitbtn updatebtn" type="submit"
@@ -202,15 +200,15 @@
 
 	<script>
 		$('#summernote').summernote({
-			placeholder : 'Hello Bootstrap 5',
+			placeholder : '글 내용을 입력해 주세요',
 			tabsize : 2,
-			height : 100
+			height : 400
 		});
 	</script>
 	<script>
     $(document).ready(function() {
         // boardcat1 값이 "secondhand"가 아닌 경우에는 해당 테이블을 숨김
-        var boardcat1 = "${boardcat1}";
+        var boardcat1 = "${board.getBoard_Cat1()}";
         if (boardcat1 !== "secondHand") {
             $("#secondhandTable").hide();
         }
