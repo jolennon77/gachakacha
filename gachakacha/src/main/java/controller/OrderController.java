@@ -76,6 +76,9 @@ public class OrderController extends HttpServlet {
 		}
 	}
 
+	
+	
+	
 	// 주문 정보 업데이트 처리
 	public void orderUpdate(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		System.out.println("주문 정보 업데이트");
