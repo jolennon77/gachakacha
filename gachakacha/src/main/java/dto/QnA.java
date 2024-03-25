@@ -67,6 +67,7 @@ public class QnA {
 	public void setQnA_Writer(String qnA_Writer) {
 		QnA_Writer = qnA_Writer;
 	}
+
 	
 	
 	

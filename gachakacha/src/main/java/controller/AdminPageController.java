@@ -16,19 +16,21 @@ import javax.servlet.http.HttpSession;
 
 import com.mysql.cj.exceptions.RSAException;
 
+import dao.InfoDAO;
 import dao.OptionDAO;
 import dao.Order1DAO;
 import dao.ProductDAO;
+import dao.QnADAO;
+import dao.ReviewDAO;
 import dao.UserDAO;
 import dto.Option;
 import dto.Orders;
 import dto.OrdersDetail;
 import dto.Product;
+import dto.QnA;
 import dto.User;
 
-/**
- * Servlet implementation class infoBordServlet
- */
+
 @WebServlet("*.admin")
 public class AdminPageController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -36,6 +38,10 @@ public class AdminPageController extends HttpServlet {
 	OptionDAO oDao;
 	UserDAO uDao;
 	Order1DAO odDao;
+	InfoDAO iDao;
+	QnADAO qDao;
+	ReviewDAO rDao;
+	
 
 	public AdminPageController() {
 		super();
@@ -43,6 +49,10 @@ public class AdminPageController extends HttpServlet {
 		oDao = new OptionDAO();
 		uDao = new UserDAO();
 		odDao = new Order1DAO();
+		iDao = new InfoDAO();
+		qDao = new QnADAO();
+		rDao = new ReviewDAO();
+		
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
@@ -398,6 +408,68 @@ public class AdminPageController extends HttpServlet {
 		    // 상세 페이지로 포워딩합니다.
 		    RequestDispatcher dispatcher = request.getRequestDispatcher("/viewAdmin/orderDetail.jsp");
 		    dispatcher.forward(request, response);
+		}else if(PATH.equals("/boardPage.admin")){
+			System.out.println("게시판 페이지");
+			
+			request.setAttribute("orderAll", iDao.getInfoAll());
+			
+			RequestDispatcher dispatchere = request.getRequestDispatcher("/view/boardList.jsp");
+			dispatchere.forward(request, response);
+			
+//		}else if(PATH.equals("/QnADelete.admin")) {
+//			System.out.println("QnA 삭제");
+//			
+//			// 삭제할 주문의 ID 가져오기
+//		    int qId = Integer.parseInt(request.getParameter("qId"));
+//
+//		    // order1DAO를 사용하여 해당 주문을 삭제합니다.
+//		    qDao.deleteBoard(qId); // 해당 Order_Id에 해당하는 주문을 삭제하는 메소드를 가정합니다.
+//
+//		}else if (PATH.equals("/updateQnA.admin")) {
+//			System.out.println("QnA 삭제 업데이트");
+//			// 버튼 누르면 상세 조회되게
+//			int qId = Integer.parseInt(request.getParameter("qId"));
+//
+//			// Order1DTO 객체로 매핑 후
+//			// request.getParameter()로 입력값 가져오기
+//			QnADAO QnA = new QnADAO();
+//			
+//			int qid = Integer.parseInt(request.getParameter("qid"));
+//			QnA.setQnA_Id(qid);
+//			int oid = Integer.parseInt(request.getParameter("oid"));
+//			orderD.setOrders_ID(oid);
+//			int pid = Integer.parseInt(request.getParameter("pid"));
+//			orderD.setProduct_ID(pid);
+//			int opid = Integer.parseInt(request.getParameter("opid"));
+//			orderD.setOption_ID(opid);
+//			int qty = Integer.parseInt(request.getParameter("qty"));
+//			orderD.setOrder_Qty(qty);
+//			
+//			// 가져온 주문 정보를 request 객체에 저장
+//			request.setAttribute("order", odId);
+//			
+//			//order1DAO를 생성하고 updateOrderById 메서드 호출
+//			odDao.getOrderDetailById(odId);
+//			response.sendRedirect("updateOrder.admin?odId=" + odId);
+//			
+//			RequestDispatcher dispatcher = request.getRequestDispatcher("/orderDetail.jsp");
+//		    dispatcher.forward(request, response);
+//		    
+//		} else if (PATH.equals("/getODetail.admin")) {
+//		    System.out.println("게시글 상세보기 페이지");
+//		    // 버튼 누르면 상세 조회되게
+//		    int odId = Integer.parseInt(request.getParameter("odId"));
+//
+//		    // Order1DAO를 생성하고 getOrderDetailById 메서드 호출
+//		    Order1DAO orderDao = new Order1DAO();
+//		    OrdersDetail orderDetail = orderDao.getOrderDetailById(odId);
+//
+//		    // 가져온 주문 상세 정보를 request 객체에 저장합니다.
+//		    request.setAttribute("orderDetail", orderDetail);
+//
+//		    // 상세 페이지로 포워딩합니다.
+//		    RequestDispatcher dispatcher = request.getRequestDispatcher("/viewAdmin/orderDetail.jsp");
+//		    dispatcher.forward(request, response);
 		}
 	}
 }

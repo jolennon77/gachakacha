@@ -18,11 +18,11 @@
 		}
 		
 		int boardID=0;
-		if(request.getParameter("boardID") != null){
-			boardID = Integer.parseInt(request.getParameter("boardID"));
+		if(request.getParameter("MemberID") != null){
+			boardID = Integer.parseInt(request.getParameter("MemberID"));
 		}
 		
-		if(boardID == 0){
+		if(MemberID == 0){
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('유효하지 않은 글입니다.')");

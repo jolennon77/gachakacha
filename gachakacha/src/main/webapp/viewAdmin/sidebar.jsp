@@ -64,7 +64,7 @@
                 <i class="fa-solid fa-pen-to-square"></i>&nbsp;&nbsp;
                     게시판관리
                     <ul class="sub-menu">
-                        <li><a>공지사항</a></li>
+                        <li href="boardPage.admin"><a>공지사항</a></li>
                         <li><a>Q & A</a></li>
                         <li><a>리뷰</a></li>
                         <li><a>중고거래</a></li>
