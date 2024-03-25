@@ -220,7 +220,7 @@
 										</table>
 									</div>
 									<div class="basic_submit_zone">
-											<input class="btn submitbtn updatebtn" type="submit" value="등록">
+											<input id="submitButton" class="btn submitbtn updatebtn" type="submit" value="등록">
 											<button class="btn submitbtn listbtn" type="button"
 												onclick="window.location.href='list.product';">목록</button>
 										</div>
@@ -280,6 +280,23 @@
 
 	<!-- Page level custom scripts -->
 	<script src="js/demo/datatables-demo.js"></script>
+	
+	
+	
+<script>
+
+    $(document).ready(function() {
+        // 등록 버튼 클릭 시
+        $("#submitButton").click(function() {
+            // 확인 대화상자 표시
+            if (confirm("등록하시겠습니까?")) {
+                // 확인 버튼 클릭 시 제품 등록 폼 제출
+                $("#productForm").submit();
+            }
+        });
+    });
+</script>
+	
 
 </body>
 

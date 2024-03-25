@@ -299,7 +299,7 @@ pageEncoding="UTF-8"%>
 						                                    <input type="hidden" name="oId" value="${option.getOption_ID()}">
 						                                    
 						                                    
-						                                    <button class="btn submitbtn deletebtn" id="minibtn" type="button" onclick="window.location.href='delete.option?oId=${option.getOption_ID()}&pId=${option.getProduct_ID()}';" >삭제</button>
+						                                    <button id="submitButton" class="btn submitbtn deletebtn" id="minibtn" type="button" onclick="window.location.href='delete.option?oId=${option.getOption_ID()}&pId=${option.getProduct_ID()}';" >삭제</button>
                                                         </div>
                                                         </td>
                                                     </tr>
@@ -355,6 +355,21 @@ pageEncoding="UTF-8"%>
 
 <!-- Page level custom scripts -->
 <script src="js/demo/datatables-demo.js"></script>
+
+
+<script>
+
+    $(document).ready(function() {
+        // 삭제 버튼 클릭 시
+        $("#submitButton").click(function() {
+            // 확인 대화상자 표시
+            if (confirm("삭제하시겠습니까?")) {
+                // 확인 버튼 클릭 시 제품 등록 폼 제출
+                $("#productForm").submit();
+            }
+        });
+    });
+</script>
 
 </body>
 

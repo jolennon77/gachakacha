@@ -144,8 +144,9 @@
 												</tbody>
 											</table>
 										</div>
-										<div class="basic_submit_zone" >
-											<input class="btn submitbtn updatebtn" type="submit" value="등록">
+
+										 <div class="basic_submit_zone" >
+											<input id="submitButton" class="btn submitbtn updatebtn" type="submit" value="등록">
 										</div>
 										
 										<br>
@@ -268,6 +269,30 @@
 
     <!-- Page level custom scripts -->
     <script src="js/demo/datatables-demo.js"></script>
+    
+    <!-- 부모 제품 등록 폼 -->
+<form id="productForm" action="insert.product" method="post">
+    <!-- 제품 정보 입력 -->
+    <!-- 여기에 폼 요소들 추가 -->
+
+</form>
+	
+	
+
+
+<script>
+
+    $(document).ready(function() {
+        // 등록 버튼 클릭 시
+        $("#submitButton").click(function() {
+            // 확인 대화상자 표시
+            if (confirm("등록하시겠습니까?")) {
+                // 확인 버튼 클릭 시 제품 등록 폼 제출
+                $("#productForm").submit();
+            }
+        });
+    });
+</script>
 
 </body>
 

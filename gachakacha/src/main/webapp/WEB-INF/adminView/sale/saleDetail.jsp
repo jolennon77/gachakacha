@@ -221,7 +221,7 @@
 									</div>
 										 <div class="basic_submit_zone" >
                                     <input class="btn submitbtn updatebtn" type="submit" value="수정">
-                                    <button class="btn submitbtn deletebtn" type="button" onclick="window.location.href='delete.sale?sId=${sale.getSale_ID()}';">삭제</button>
+                                    <button id="submitButton" class="btn submitbtn deletebtn" type="button" onclick="window.location.href='delete.sale?sId=${sale.getSale_ID()}';">삭제</button>
                                     <button class="btn submitbtn listbtn" type="button" onclick="window.location.href='list.sale';">목록</button>
                                     </div>
 									</form>
@@ -279,6 +279,22 @@
 
 	<!-- Page level custom scripts -->
 	<script src="js/demo/datatables-demo.js"></script>
+	
+	
+		
+<script>
+
+    $(document).ready(function() {
+        // 삭제 버튼 클릭 시
+        $("#submitButton").click(function() {
+            // 확인 대화상자 표시
+            if (confirm("삭제하시겠습니까?")) {
+                // 확인 버튼 클릭 시 제품 등록 폼 제출
+                $("#productForm").submit();
+            }
+        });
+    });
+</script>
 
 </body>
 
