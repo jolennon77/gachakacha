@@ -372,28 +372,38 @@ to {
 
 				<div class="mySlides fade">
 					<div class="numbertext">1 / 3</div>
+					<div style="display: flex; justify-content: flex-start; ">
 					<img
 						src="https://gw.alicdn.com/imgextra/i4/2200742982579/O1CN01Jjt5Lg1UvELw9Yoj0_!!0-item_pic.jpg_Q75.jpg_.webp"
 						style="width: 50%">
+						<img
+							src="https://gw.alicdn.com/imgextra/i3/2200742982579/O1CN010xlb5Z1UvELtvHIv2_!!0-item_pic.jpg_Q75.jpg_.webp"
+							style="width: 50%">
 					<!-- <div class="text">Caption Text</div> -->
+				</div>
 				</div>
 
 				<div class="mySlides fade">
 					<div class="numbertext">2 / 3</div>
+					<div style="display: flex; justify-content: flex-start; ">
 					<img
 						src="https://gw.alicdn.com/imgextra/i3/2200742982579/O1CN01HdjZHR1UvENW4JZfK_!!0-item_pic.jpg_Q75.jpg_.webp"
 						style="width: 50%">
+					<img
+						src="https://gw.alicdn.com/imgextra/i4/2200742982579/O1CN01ELBgh41UvEJ0Vz7bT_!!0-item_pic.jpg_Q75.jpg_.webp"
+						style="width: 50%">
+				</div>
 					<!-- <div class="text">Caption Two</div> -->
 				</div>
 
 				<div class="mySlides fade">
 					<div class="numbertext">3 / 3</div>
-					<div style="flex: ">
+					<div style="display: flex; justify-content: flex-start; ">	
 					<img
 						src="https://gw.alicdn.com/imgextra/i1/2200742982579/O1CN016Z3R5Q1UvEMFBJFGP_!!0-item_pic.jpg_Q75.jpg_.webp"
 						style="width: 50%">
 					<img
-						src="https://gw.alicdn.com/imgextra/i1/2200742982579/O1CN016Z3R5Q1UvEMFBJFGP_!!0-item_pic.jpg_Q75.jpg_.webp"
+						src="https://gw.alicdn.com/bao/uploaded/i1/2200742982579/O1CN01OP4YKj1UvEK80iCMi_!!0-item_pic.jpg"
 						style="width: 50%">
 					</div>	
 					<!-- <div class="text">Caption Three</div> -->
