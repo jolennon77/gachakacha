@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -15,6 +16,7 @@ import dao.OrderDAO;
 import dao.OptionDAO;
 import dao.UserDAO;
 import dto.Orders;
+import dto.Product;
 import dto.Option;
 import dto.User;
 
@@ -54,6 +56,9 @@ public class OrderController extends HttpServlet {
 				} else if (PATH.equals("/detail.order")) {
 					// 주문 정보 상세보기 페이지로 이동
 					orderDetail(request, response);
+				} else if (PATH.equals("/insertShipForm.order")) {
+					// 옵션 추가 페이지로 이동
+					insertShipForm(request, response);
 				}
 			} else {
 				// 권한이 없는 사용자인 경우 에러페이지로 리다이렉트
@@ -73,6 +78,10 @@ public class OrderController extends HttpServlet {
 		if (PATH.equals("/update.order")) {
 			// 주문 정보 업데이트 처리
 			orderUpdate(request, response);
+		} else if (PATH.equals("/updateShip.order")) {
+			// 주문 정보 업데이트 처리
+			System.out.println("송장업뎃");
+			shipUpdate(request, response);
 		}
 	}
 
@@ -88,7 +97,7 @@ public class OrderController extends HttpServlet {
 
 		// 수정할 주문 정보 설정
 		Orders order = new Orders();
-		order.setOrders_Status(request.getParameter("Orders_Status"));
+		order.setOrders_Status("배송완료");
 		order.setShip_Number(request.getParameter("Ship_Number"));
 		order.setOrders_Memo(request.getParameter("Orders_Memo"));
 		order.setOrders_ID(orderId);
@@ -155,4 +164,37 @@ public class OrderController extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/adminView/order/orderDetail.jsp");
 		dispatcher.forward(request, response);
 	}
+	
+	
+		private void insertShipForm(HttpServletRequest request, HttpServletResponse response)
+				throws ServletException, IOException {
+			int odId = Integer.parseInt(request.getParameter("odId"));
+			Orders order = orderDAO.getOrderId(odId);
+			request.setAttribute("order", order);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/adminView/order/shipInsert.jsp");
+			dispatcher.forward(request, response);
+		}
+		
+		// 주문 정보 업데이트 처리
+		public void shipUpdate(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+			// 주문 ID 가져오기
+			int orderId = Integer.parseInt(request.getParameter("odId"));
+
+			// 수정할 주문 정보 설정
+			Orders order = new Orders();
+			order.setOrders_Status("배송완료");
+			order.setShip_Number(request.getParameter("Ship_Number"));
+			order.setOrders_ID(orderId);
+
+			// 주문 정보 업데이트
+			orderDAO.updateShipById(order);
+
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("window.opener.location.reload();"); // 부모 창 새로고침
+			out.println("window.close();"); // 팝업 창 닫기
+			out.println("</script>");
+		}
+
 }

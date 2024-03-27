@@ -33,9 +33,6 @@
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
-		<!-- Sidebar -->
-		<%@ include file="/WEB-INF/adminView/layout/sidebar.jsp"%>
-
 		<!-- End of Sidebar -->
 
 		<!-- Content Wrapper -->
@@ -43,39 +40,12 @@
 
 			<!-- Main Content -->
 			<div id="content">
-
-				<!-- Topbar -->
-				<%@ include file="/WEB-INF/adminView/layout/topbar.jsp"%>
 				<!-- End of Topbar -->
 
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<div
-						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">
-						<c:choose>
-						    <c:when test="${boardcat1 == 'info'}">
-						        공지사항 게시판
-						    </c:when>
-						    <c:when test="${boardcat1 == 'QnA'}">
-						        Q&A 게시판
-						    </c:when>
-						    <c:when test="${boardcat1 == 'review'}">
-						        리뷰 게시판
-						    </c:when>
-						    <c:when test="${boardcat1 == 'secondHand'}">
-						        중고장터 게시판
-						    </c:when>
-						</c:choose>
-						
-						</h1>
-						<a href="insertForm.board?bcat=${boardcat1}"
-							class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"style="margin-left: auto;"><i
-							class="fas fa-download fa-sm text-white-50"></i>&nbsp;게시글 등록</a>
-							
-					</div>
 					<div class="container-fluid">
 						<div class="card shadow mb-4">
 							<!-- <div class="card-header py-3">
@@ -89,8 +59,8 @@
 										<colgroup>
 											<col width="8%">
 											<col width="8%">
-											<col class="productInfo" width="8%">
-											<col class="secondhand">
+											<col class="productInfo" width="9%">
+											<col class="secondhand" width="6%">
 											<col>
 											<col width="12%">
 											<col width="20%">
@@ -171,7 +141,7 @@
 
     <!-- Page level custom scripts -->
     <script src="js/demo/datatables-demo.js"></script>
-<script>
+<!-- <script>
     $(document).ready(function() {
         // boardcat1 값이 "secondHand"가 아닌 경우에는 해당 요소를 숨김
         var boardcat1 = "${boardcat1}";
@@ -184,7 +154,7 @@
             $(".productInfo").hide();
         }
     });
-</script>
+</script> -->
 </body>
 
 </html>

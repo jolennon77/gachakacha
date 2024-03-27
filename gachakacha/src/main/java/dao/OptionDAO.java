@@ -23,7 +23,7 @@ public class OptionDAO {
 	private String OPTION_LIST = "SELECT * FROM ProductOption WHERE Product_ID = ?";
 	private String OPTION_DELETE = "DELETE FROM ProductOption WHERE Option_ID = ?";
 	private String OPTION_UPDATE = "UPDATE ProductOption SET Option_Name = ?, Option_Grade = ?, Option_Img = ?, Option_Qty = ? WHERE Option_ID = ?";
-	private String TOTALCOUNT = "SELECT Product_ID, SUM(Option_Qty) AS Total_Qty FROM ProductOption WHERE Product_ID = ? GROUP BY Product_ID;";
+//	private String TOTALCOUNT = "SELECT Product_ID, SUM(Option_Qty) AS Total_Qty FROM ProductOption WHERE Product_ID = ? GROUP BY Product_ID;";
 
 	
 //  getAll() 메서드 추가

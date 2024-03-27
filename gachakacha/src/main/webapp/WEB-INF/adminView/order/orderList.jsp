@@ -59,9 +59,6 @@
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
 						<h1 class="h3 mb-0 text-gray-800">주문 조회</h1>
-						<a href="#"
-							class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-							class="fas fa-download fa-sm text-white-50"></i>&nbsp;데이터베이스 내려받기</a>
 					</div>
 					<div class="container-fluid">
 						<div class="card shadow mb-4">
@@ -83,6 +80,7 @@
 												<th class="headth">주문 일자</th>
 												<th class="headth">결제 상태</th>
 												<th class="headth">운송 번호</th>
+												<th class="headth">송장 입력</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -101,8 +99,7 @@
 												<td>${order.getOrders_Date()}</td>
 												<td>${order.getOrders_Status()}</td>
 												<td>${order.getShip_Number()}</td>
-
-												
+												<td><button class="btn submitbtn updatebtn" id="minibtn" type="button" onclick="openShipPage(${order.getOrders_ID()});">운송장번호입력</button></td>
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -152,7 +149,13 @@
 
 	<!-- Page level custom scripts -->
 	<script src="js/demo/datatables-demo.js"></script>
-
+	<script>
+    function openShipPage(orderId) {
+        var url = "insertShipForm.order?odId=" + orderId;
+        var shipWindow = window.open(url, "_blank", "width=1000,height=400");
+        shipWindow.focus();
+    }
+</script>
 </body>
 
 </html>

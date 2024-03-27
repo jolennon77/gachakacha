@@ -65,7 +65,7 @@
                         <h6 class="collapse-header">게 시 판 관 리</h6>
                         <a class="collapse-item" href="list.board?bcat=info">공 지 사 항</a>
                         <a class="collapse-item" href="list.board?bcat=QnA">Q & A</a>
-                        <a class="collapse-item" href="list.board?bcat=reivew">리 뷰</a>
+                        <a class="collapse-item" href="list.board?bcat=review">리 뷰</a>
                         <a class="collapse-item" href="list.board?bcat=secondHand">중 고 장 터</a>
                     </div>
                 </div>

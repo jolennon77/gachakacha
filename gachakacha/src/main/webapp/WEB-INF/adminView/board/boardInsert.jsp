@@ -81,10 +81,20 @@
 					<!-- Page Heading -->
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">${boardcat1}테스트</h1>
-						<a href="#"
-							class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-							class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+						<h1 class="h3 mb-0 text-gray-800">	<c:choose>
+						    <c:when test="${boardcat1 == 'info'}">
+						        공지사항 게시글 쓰기
+						    </c:when>
+						    <c:when test="${boardcat1 == 'QnA'}">
+						        Q&A 게시글 쓰기
+						    </c:when>
+						    <c:when test="${boardcat1 == 'review'}">
+						        리뷰 게시글 쓰기
+						    </c:when>
+						    <c:when test="${boardcat1 == 'secondHand'}">
+						        중고장터 게시글 쓰기
+						    </c:when>
+						</c:choose></h1>
 					</div>
 					<div class="container-fluid">
 						<div class="card shadow mb-4">
@@ -96,7 +106,7 @@
 								<div class="table-responsive">
 
 
-									<form id="boardForm" action="update.board" method="post">
+									<form id="boardForm" action="insert.board" method="post">
 										<input type="hidden" name="uId" value="${user.getId()}">
 										<input type="hidden" name="bcat1" value="${boardcat1}">
 										<input type="hidden" name="pId" value="${boardcat1}">
@@ -164,10 +174,16 @@
 										</div> -->
 										<textarea rows="5" id="summernote" name="Board_Content"></textarea>
 										<br>
-										<div class="basic	_submit_zone">
-											<input class="btn submitbtn updatebtn" type="submit"
-												value="등록">
+										
+										
+										 <div class="basic_submit_zone" >
+                                    	<input class="btn submitbtn updatebtn" type="submit" value="등록">
+                                   		<button class="btn submitbtn listbtn" type="button" onclick="window.location.href='list.board?bcat=${boardcat1}';">목록</button>
+                                    
 										</div>
+										
+										
+											
 									</form>
 
 
@@ -239,6 +255,7 @@
 	<!-- Page level custom scripts -->
 	<script
 		src="${pageContext.request.contextPath}/js/demo/datatables-demo.js"></script>
+		
 </body>
 
 </html>

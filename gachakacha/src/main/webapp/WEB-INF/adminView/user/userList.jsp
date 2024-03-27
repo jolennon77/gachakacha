@@ -55,9 +55,6 @@
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
 						<h1 class="h3 mb-0 text-gray-800">회원 목록</h1>
-						<a href="#"
-							class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-							class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
 					</div>
 					<div class="container-fluid">
 						<div class="card shadow mb-4">
@@ -108,7 +105,7 @@
                                                     <td>${u.getBirth()}</td>
 													<td>${u.getsingupDate()}</td>
 													<td>${u.getAut()}</td>
-													<td><button class="btn submitbtn listbtn" id="minibtn" type="button" onclick="window.location.href='#';">작성글</button></td>
+													<td><button class="btn submitbtn updatebtn" id="minibtn" type="button" onclick="openBoardPage(${u.getId()});">작성글</button></td>
 												</tr>
 											</c:forEach>
 										</tbody>
@@ -158,7 +155,13 @@
 
     <!-- Page level custom scripts -->
     <script src="${pageContext.request.contextPath}/js/demo/datatables-demo.js"></script>
-
+	<script>
+    function openBoardPage(userId) {
+        var url = "detailByUser.board?uId=" + userId;
+        var shipWindow = window.open(url, "_blank", "width=1000,height=400");
+        shipWindow.focus();
+    }
+</script>
 </body>
 
 </html>

@@ -15,9 +15,16 @@ public class Board {
     private String Board_Pwd;
     private String Board_Content;
     private String User_Name;
+    private String Product_Img;
     
     
-    public void setUser_Name(String user_Name) {
+    public String getProduct_Img() {
+		return Product_Img;
+	}
+	public void setProduct_Img(String product_Img) {
+		Product_Img = product_Img;
+	}
+	public void setUser_Name(String user_Name) {
 		User_Name = user_Name;
 	}
 	public String getUser_Name() {

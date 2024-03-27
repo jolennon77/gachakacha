@@ -21,6 +21,7 @@ public class OrderDAO {
 	private String ORDER_DELETE = "DELETE FROM Orders WHERE Orders_ID = ?";
 	private String GET_ORDERS_BY_ID = "SELECT * FROM Orders WHERE Orders_ID = ?";
 	private String ORDER_UPDATE = "UPDATE Orders SET Orders_Status = ?, Ship_Number = ?, Orders_Memo = ? WHERE Orders_ID = ?";
+	private String SHIP_UPDATE = "UPDATE Orders SET Orders_Status = ?, Ship_Number = ? WHERE Orders_ID = ?";
 	
 	
 	
@@ -124,8 +125,25 @@ public class OrderDAO {
 	        
 	        pstmt.setString(1, order.getOrders_Status());
 	        pstmt.setString(2, order.getShip_Number());
-	        pstmt.setString(3, order.getOrders_Memo());
-	        pstmt.setInt(4, order.getOrders_ID());
+	        pstmt.setInt(3, order.getOrders_ID());
+	        
+	        pstmt.executeUpdate();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        MyDBConnection.close(rs, pstmt, con);
+	    }
+	}
+	
+	
+	public void updateShipById(Orders order) {
+	    try {
+	        con = MyDBConnection.getConnection();
+	        pstmt = con.prepareStatement(SHIP_UPDATE);
+	        
+	        pstmt.setString(1, order.getOrders_Status());
+	        pstmt.setString(2, order.getShip_Number());
+	        pstmt.setInt(3, order.getOrders_ID());
 	        
 	        pstmt.executeUpdate();
 	    } catch (SQLException e) {

@@ -81,10 +81,7 @@
 					<!-- Page Heading -->
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">${board.getBoard_Cat1()}테스트</h1>
-						<a href="#"
-							class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-							class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+						<h1 class="h3 mb-0 text-gray-800">게시글 수정</h1>
 					</div>
 					<div class="container-fluid">
 						<div class="card shadow mb-4">
@@ -94,12 +91,10 @@
 							</div> -->
 							<div class="card-body">
 								<div class="table-responsive">
-
-
-									<form id="boardForm" action="insert.board" method="post">
+									<form id="boardForm" action="update.board" method="post">
 										<input type="hidden" name="uId" value="${user.getId()}">
-										<input type="hidden" name="bcat1" value="${boardcat1}">
-										<input type="hidden" name="pId" value="${board.getBoard_Cat1()}">
+										<input type="hidden" name="bcat1" value="${board.getBoard_Cat1()}">
+										<input type="hidden" name="bId" value="${board.getBoard_ID()}">
 										<table
 											class="table table-bordered mainProductTable table-input"
 											id="secondhandTable" width="100%" cellspacing="0" style="width: 33.4%">
@@ -162,9 +157,11 @@
 										</div> -->
 										<textarea rows="5" id="summernote" name="Board_Content">${board.getBoard_Content()}</textarea>
 										<br>
-										<div class="basic	_submit_zone">
-											<input class="btn submitbtn updatebtn" type="submit"
-												value="등록">
+										 <div class="basic_submit_zone" >
+                                    	<input class="btn submitbtn updatebtn" id="submitButton" type="submit" value="수정">
+                                     <button class="btn submitbtn deletebtn" id="deletebtn" type="button" onclick="confirmDeleteBoard('${board.getBoard_ID()}', '${board.getBoard_Cat1()}');">삭제</button>
+                                    <button class="btn submitbtn listbtn" type="button" onclick="window.location.href='list.board?bcat=${board.getBoard_Cat1()}';">목록</button>
+                                    
 										</div>
 									</form>
 
@@ -205,16 +202,33 @@
 			height : 400
 		});
 	</script>
-	<script>
-    $(document).ready(function() {
-        // boardcat1 값이 "secondhand"가 아닌 경우에는 해당 테이블을 숨김
-        var boardcat1 = "${board.getBoard_Cat1()}";
-        if (boardcat1 !== "secondHand") {
-            $("#secondhandTable").hide();
-        }
-    });
-</script>
+<script>
+$(document).ready(function() {
+    // boardcat1 값이 "secondhand"가 아닌 경우에는 해당 테이블을 숨김
+    var boardcat1 = "${board.getBoard_Cat1()}";
+    if (boardcat1 !== "secondHand") {
+        $("#secondhandTable").hide();
+    }
 
+    $("#submitButton").click(function() {
+            // 기존 비밀번호와 새로 입력한 비밀번호 비교
+            var oldPassword = "${board.getBoard_Pwd()}"; // 기존 비밀번호
+            var newPassword = $("#Board_Pwd").val(); // 새로 입력한 비밀번호
+
+            if (oldPassword !== newPassword) {
+                alert("비밀번호가 일치하지 않습니다.");
+                return false; // 함수 종료
+            } else{
+      	    		  // 폼 전송
+          		   alert("수정이 완료 되었습니다.");
+      	    		  $("#boardForm").submit();
+      	    		  
+      	    		  }
+    });
+});
+
+
+</script>
 	<!-- Bootstrap core JavaScript-->
 	<script
 		src="${pageContext.request.contextPath}/vendor/jquery/jquery.min.js"></script>
@@ -237,6 +251,31 @@
 	<!-- Page level custom scripts -->
 	<script
 		src="${pageContext.request.contextPath}/js/demo/datatables-demo.js"></script>
+		<script src="/js/board.js"></script>
+<script>
+		$(document).ready(function() {
+		    // 삭제 버튼 클릭 시
+		    $("#deletebtn").click(function() {
+		        // 기존 비밀번호와 입력한 비밀번호 비교
+		        var oldPassword = "${board.getBoard_Pwd()}"; // 기존 비밀번호
+		        var newPassword = $("#Board_Pwd").val(); // 입력한 비밀번호
+
+		        if (oldPassword !== newPassword) {
+		            alert("비밀번호가 일치하지 않습니다. 삭제할 수 없습니다.");
+		            return false; // 삭제 중지
+		        } else {
+		            // 비밀번호가 일치하면 삭제 확인 대화상자 표시
+		            var result = confirm("정말로 삭제하시겠습니까?");
+		            if (result) {
+		                // 확인을 누르면 삭제 요청을 서버로 전송
+		                var boardId = "${board.getBoard_ID()}";
+		                var bcat1 = "${board.getBoard_Cat1()}";
+		                window.location.href = 'delete.board?bId=' + boardId + '&bcat1=' + bcat1;
+		            }
+		        }
+		    });
+		});
+		</script>
 </body>
 
 </html>

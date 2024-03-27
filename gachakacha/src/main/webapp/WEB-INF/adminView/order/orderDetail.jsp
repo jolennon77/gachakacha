@@ -27,39 +27,6 @@
             <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 
 
-<script>
-    // 페이지가 로드될 때 초기 상태 설정
-    window.onload = function() {
-        updateOrderStatus();
-    };
-
-    // 운송장 번호 입력 칸에서 벗어났을 때 주문 상태 업데이트
-    document.getElementById('Ship_Number').addEventListener('blur', function() {
-        updateOrderStatus();
-    });
-
-    function updateOrderStatus() {
-        var shipNumber = document.getElementById('Ship_Number').value;
-        var orderStatusInput = document.getElementById('Orders_Status');
-        var orderStatus = '';
-
-        // 운송장 번호가 있으면 배송 완료로 설정
-        if (shipNumber.trim() !== '') {
-            orderStatus = '배송완료';
-        } else {
-            orderStatus = '주문접수';
-        }
-
-        // 주문 상태 필드에 값 설정
-        orderStatusInput.value = orderStatus;
-    }
-</script>
-
-
-
-
-
-            
         </head>
 
         <body id="page-top">
@@ -87,8 +54,6 @@
                                     <!-- Page Heading -->
                                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                                         <h1 class="h3 mb-0 text-gray-800">주문 상세보기</h1>
-                                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                                     </div>
                                     <div class="container-fluid">
                                         <div class="card shadow mb-4">
