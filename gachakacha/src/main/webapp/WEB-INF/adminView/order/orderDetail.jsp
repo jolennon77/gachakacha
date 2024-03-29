@@ -117,7 +117,7 @@
                                                                             </td>
                                                                             <th>주 문 상 태</th>
                                                                             <td>
-                                                                            	<input class="text__block" type="text" name="Orders_Status" id="Orders_Status" value="" readonly> <%-- ${order.getOrders_Status()} --%>
+                                                                            	<input class="text__block" type="text" name="Orders_Status" id="Orders_Status" value="${order.getOrders_Status()}" readonly> <%-- ${order.getOrders_Status()} --%>
                                                                             </td>
                                                                         </tr>
                                                                         <tr>

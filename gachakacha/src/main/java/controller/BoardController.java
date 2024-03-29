@@ -31,7 +31,7 @@ public class BoardController extends HttpServlet {
 
 	// GET 요청 처리
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+		throws ServletException, IOException {
 		final String URI = request.getRequestURI();
 		final String PATH = URI.substring(URI.lastIndexOf("/"));
 

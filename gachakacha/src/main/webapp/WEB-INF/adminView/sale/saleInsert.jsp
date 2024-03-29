@@ -82,7 +82,7 @@
 					<!-- Page Heading -->
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">상품 등록</h1>
+						<h1 class="h3 mb-0 text-gray-800">판매 등록</h1>
 					</div>
 					<div class="container-fluid">
 						<div class="card shadow mb-4">
@@ -145,7 +145,7 @@
 														<td><input class="text__block" type="text"
 															name="p_Name" id="p_Name" readonly="readonly"
 															value="${product.getProduct_Name()}"></td>
-														<th>제품가격</th>
+														<th>입고가격</th>
 														<!-- 제품 이미지 URL 입력 필드 -->
 														<td><input class="text__block" type="text"
 															name="p_Price" id="p_Price" readonly="readonly"

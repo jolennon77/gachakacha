@@ -80,7 +80,6 @@ public class OrderController extends HttpServlet {
 			orderUpdate(request, response);
 		} else if (PATH.equals("/updateShip.order")) {
 			// 주문 정보 업데이트 처리
-			System.out.println("송장업뎃");
 			shipUpdate(request, response);
 		}
 	}
