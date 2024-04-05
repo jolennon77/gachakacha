@@ -97,11 +97,6 @@ Server
 <h2>🖱️주요 기능 시연</h2>
 
 <br>
-YOUTUBE
-
-[![영상시연](http://img.youtube.com/vi/56BqfOY2Cj4/0.jpg)](https://youtu.be/56BqfOY2Cj4?t=0s) 
-
-
 <details>
   
 <summary>로그인</summary>
@@ -151,7 +146,20 @@ YOUTUBE
 
 ![게시판](https://github.com/jolennon77/gachakacha/blob/main/readmeimg/%E1%84%80%E1%85%A6%E1%84%89%E1%85%B5%E1%84%91%E1%85%A1%E1%86%AB.png)
 </details>
+<br>
+</details>
 
+<h2>🖱️YOUTUBE & PPT</h2>
+
+<br>
+
+[![영상시연](http://img.youtube.com/vi/56BqfOY2Cj4/0.jpg)](https://youtu.be/56BqfOY2Cj4?t=0s) 
+
+![유튜브](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white)
+
+
+
+<a href="https://github.com/jolennon77](https://www.canva.com/design/DAF_X3e98AA/LNWcbmJkJCUcijkxSpVeDg/edit?utm_content=DAF_X3e98AA&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton">PPT</a>
 
 <br>
 
