@@ -71,7 +71,8 @@
 								<div class="table-responsive">
 									<!-- start of 부모 제품 등록 폼 -->
 
-									<form action="update.user" method="post">
+									<form action="update.user" method="post" onsubmit="return confirmUpdate() && validateForm();">
+
 										<input type="hidden" name="pId"
 											value="${product.getProduct_Id()}">
 										<div class="mainProduct input__block">
@@ -159,8 +160,10 @@
 								<div class="basic_submit_zone">
 											<input class="btn submitbtn updatebtn" type="submit" value="수정">
 											<input type="hidden" name="uId" value="${user.getId()}">
-											<button class="btn submitbtn deletebtn" type="button"
-												onclick="window.location.href='delete.user?uId=${user.getId()}';">삭제</button>
+											
+											<button class="btn submitbtn deletebtn" type="button" onclick="confirmDelete();">삭제</button>
+										<%-- 	<button class="btn submitbtn deletebtn" type="button"
+												onclick="window.location.href='delete.user?uId=${user.getId()}';">삭제</button> --%>
 											<button class="btn submitbtn listbtn" type="button"
 												onclick="window.location.href='list.user';">목록</button>
 										</div>
@@ -209,6 +212,34 @@
 
 	<!-- Page level custom scripts -->
 	<script src="js/demo/datatables-demo.js"></script>
+	<script>
+    function confirmUpdate() {
+        return confirm("수정하시겠습니까?");
+    }
+
+    function validateForm() {
+        var email = document.getElementById("u_Email").value;
+        var name = document.getElementById("u_Name").value;
+        var password = document.getElementById("u_Pwd").value;
+        var phone = document.getElementById("u_Phone").value;
+        var address = document.getElementById("u_Address").value;
+        var signupDate = document.getElementById("u_signupDate").value;
+        var birth = document.getElementById("u_Birth").value;
+
+        if (email == "" || name == "" || password == "" || phone == "" || address == "" || signupDate == "" || birth == "") {
+            alert("모든 필드를 채워주세요.");
+            return false;
+        }
+    }
+</script>
+
+	<script>
+    function confirmDelete() {
+        if (confirm("정말 삭제하시겠습니까?")) {
+            window.location.href = 'delete.user?uId=${user.getId()}';
+        }
+    }
+</script>
 </body>
 
 </html>

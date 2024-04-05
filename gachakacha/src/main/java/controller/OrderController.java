@@ -105,7 +105,7 @@ public class OrderController extends HttpServlet {
 		orderDAO.updateOrderById(order);
 
 		// 주문 리스트 페이지로 리다이렉트
-		response.sendRedirect("list.order");
+		response.sendRedirect(request.getContextPath() + "/detail.order?odId=" + order.getOrders_ID());
 	}
 
 	// 주문 관리 페이지로 이동

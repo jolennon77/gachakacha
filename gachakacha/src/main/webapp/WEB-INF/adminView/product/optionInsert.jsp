@@ -28,7 +28,7 @@
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-    <script src="js/addOption.js"></script>
+    <script src="js/addOption3.js"></script>
 </head>
 
 <body>

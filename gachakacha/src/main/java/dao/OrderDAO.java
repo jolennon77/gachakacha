@@ -125,7 +125,8 @@ public class OrderDAO {
 	        
 	        pstmt.setString(1, order.getOrders_Status());
 	        pstmt.setString(2, order.getShip_Number());
-	        pstmt.setInt(3, order.getOrders_ID());
+	        pstmt.setString(3, order.getOrders_Memo());
+	        pstmt.setInt(4, order.getOrders_ID());
 	        
 	        pstmt.executeUpdate();
 	    } catch (SQLException e) {

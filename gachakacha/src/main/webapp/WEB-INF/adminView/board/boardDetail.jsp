@@ -253,28 +253,28 @@ $(document).ready(function() {
 		src="${pageContext.request.contextPath}/js/demo/datatables-demo.js"></script>
 		<script src="/js/board.js"></script>
 <script>
-		$(document).ready(function() {
-		    // 삭제 버튼 클릭 시
-		    $("#deletebtn").click(function() {
-		        // 기존 비밀번호와 입력한 비밀번호 비교
-		        var oldPassword = "${board.getBoard_Pwd()}"; // 기존 비밀번호
-		        var newPassword = $("#Board_Pwd").val(); // 입력한 비밀번호
+$(document).ready(function() {
+    // 삭제 버튼 클릭 시
+    $("#deletebtn").click(function() {
+        // 기존 비밀번호와 입력한 비밀번호 비교
+        var oldPassword = "${board.getBoard_Pwd()}"; // 기존 비밀번호
+        var newPassword = $("#Board_Pwd").val(); // 입력한 비밀번호
 
-		        if (oldPassword !== newPassword) {
-		            alert("비밀번호가 일치하지 않습니다. 삭제할 수 없습니다.");
-		            return false; // 삭제 중지
-		        } else {
-		            // 비밀번호가 일치하면 삭제 확인 대화상자 표시
-		            var result = confirm("정말로 삭제하시겠습니까?");
-		            if (result) {
-		                // 확인을 누르면 삭제 요청을 서버로 전송
-		                var boardId = "${board.getBoard_ID()}";
-		                var bcat1 = "${board.getBoard_Cat1()}";
-		                window.location.href = 'delete.board?bId=' + boardId + '&bcat1=' + bcat1;
-		            }
-		        }
-		    });
-		});
+        if (oldPassword !== newPassword) {
+            alert("비밀번호가 일치하지 않습니다. 삭제할 수 없습니다.");
+            return false; // 삭제 중지
+        } else {
+            // 비밀번호가 일치하면 삭제 확인 대화상자 표시
+            var result = confirm("정말로 삭제하시겠습니까?");
+            if (result) {
+                // 확인을 누르면 삭제 요청을 서버로 전송
+                var boardId = "${board.getBoard_ID()}";
+                var bcat1 = "${board.getBoard_Cat1()}";
+                window.location.href = 'delete.board?bId=' + boardId + '&bcat1=' + bcat1;
+            }
+        }
+    });
+});
 		</script>
 </body>
 
